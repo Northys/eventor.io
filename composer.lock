@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "07629cf5ef3a4d7208a50877ae9348cd",
+    "hash": "c164215bbf67f75358198d2c42cf473d",
     "packages": [
         {
             "name": "brabijan/bootstrap-ui-components",
@@ -2399,6 +2399,51 @@
             "time": "2015-03-09 23:43:12"
         },
         {
+            "name": "rhrebecek/nette-identity-doctrine",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rhrebecek/nette-identity-doctrine.git",
+                "reference": "98508ebf9f82751a7ae820747cd13a4f93276fad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rhrebecek/nette-identity-doctrine/zipball/98508ebf9f82751a7ae820747cd13a4f93276fad",
+                "reference": "98508ebf9f82751a7ae820747cd13a4f93276fad",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "~2.3",
+                "nette/nette": "~2.0",
+                "php": ">=5.3.2"
+            },
+            "type": "nette-addon",
+            "autoload": {
+                "psr-0": {
+                    "Majkl578\\NetteAddons\\Doctrine2Identity\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Moravec"
+                }
+            ],
+            "description": "Integration of entities implementing IIdentity in Nette 2",
+            "keywords": [
+                "Authentication",
+                "doctrine",
+                "identity",
+                "nette",
+                "orm",
+                "security"
+            ],
+            "time": "2015-03-15 14:43:47"
+        },
+        {
             "name": "symfony/console",
             "version": "v2.6.6",
             "target-dir": "Symfony/Component/Console",
@@ -2576,7 +2621,8 @@
         "brabijan/bootstrap-ui-components": 20,
         "kdyby/doctrine": 20,
         "kdyby/bootstrap-form-renderer": 20,
-        "brabijan/images": 20
+        "brabijan/images": 20,
+        "rhrebecek/nette-identity-doctrine": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

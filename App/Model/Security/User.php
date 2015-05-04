@@ -2,6 +2,7 @@
 
 namespace App\Model\Security;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Kdyby\Doctrine\Entities\BaseEntity;
 use Nette\Security\IIdentity;
@@ -12,6 +13,7 @@ use Nette\Security\IIdentity;
  * @property $name
  * @property $email
  * @property $password
+ * @property $events
  */
 class User extends BaseEntity implements IIdentity
 {
@@ -31,6 +33,29 @@ class User extends BaseEntity implements IIdentity
 
 	/** @ORM\Column(type="string") */
 	protected $password;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Model\Event\Entity\Event", mappedBy="user")
+	 * @var \App\Model\Event\Entity\Event[]|ArrayCollection
+	 */
+	protected $events;
+
+
+
+	public function __construct()
+	{
+		$this->events = new ArrayCollection();
+	}
+
+
+
+	/**
+	 * @return \App\Model\Event\Entity\Event[]|ArrayCollection
+	 */
+	public function getEvents()
+	{
+		return $this->events;
+	}
 
 
 

@@ -32,6 +32,7 @@ extensions:
 	events: Kdyby\Events\DI\EventsExtension
 	annotations: Kdyby\Annotations\DI\AnnotationsExtension
 	doctrine: Kdyby\Doctrine\DI\OrmExtension
+	doctrine2identity: Majkl578\NetteAddons\Doctrine2Identity\DI\IdentityExtension
 
 services:
 	- App\Router\RouterFactory
@@ -45,6 +46,12 @@ services:
 	-
 		class: App\Model\Cli\Users\CreateUser
 		tags: [kdyby.console.command]
+
+	# events
+	- App\Model\Event\Facade\Event
+	- App\Model\Event\Facade\Child
+	- App\Components\SetEventForm
+	- App\Components\SetChildForm
 
 	# static targets
 	-

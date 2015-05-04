@@ -36,6 +36,7 @@
 				<a class="brand" n:href=":Homepage:default">Project name</a>
 				<ul n:if="$user->isLoggedIn()" class="nav nav-pills">
 					<li n:class="$presenter->isLinkCurrent(':Users:*') ? active"><a n:href=":Users:default">Uživatelé</a></li>
+					<li n:class="$presenter->isLinkCurrent(':Event:*') ? active"><a n:href=":Event:default">Události</a></li>
 				</ul>
 				<ul class="nav nav-pills pull-right">
 					<li>

@@ -1,0 +1,22 @@
+{block #content}
+	<table class="table table-hover table-striped">
+		<tr>
+			<th class="icon_column"></th>
+			<th class="icon_column"></th>
+			<th>Jméno</th>
+			<th>Datum</th>
+			<th>Místo</th>
+			<th>Uživatel</th>
+		</tr>
+		<tr n:foreach="$eventList as $event">
+			<td><a n:href=":Event:detail $event->id">detail + edit</a></td>
+			<td><a n:href="deleteEvent! $event->id">remove</a></td>
+			<td>{$event->name}</td>
+			<td>{$event->date|date:'j.n.Y'}</td>
+			<td>{$event->place}</td>
+			<td>{$event->user->name}</td>
+		</tr>
+	</table>
+
+	{control addEventForm}
+{/block}

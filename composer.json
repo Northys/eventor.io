@@ -16,7 +16,8 @@
 		"kdyby/doctrine": "@dev",
 		"kdyby/autowired": "~1.0",
 		"kdyby/bootstrap-form-renderer": "@dev",
-		"brabijan/images": "@dev"
+		"brabijan/images": "@dev",
+		"rhrebecek/nette-identity-doctrine": "dev-master"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"
