@@ -40,6 +40,9 @@ class User extends BaseEntity implements IIdentity
 	 */
 	protected $events;
 
+	/** @ORM\Column(type="string", nullable=true) */
+	protected $class;
+
 
 
 	public function __construct()
