@@ -1,0 +1,25 @@
+{
+	"name": "qopcomputers/sandbox",
+	"type": "project",
+	"license": ["Unlicense"],
+	"authors": [
+		{
+			"name": "Jan Brabec"
+		}
+	],
+	"require": {
+		"php": ">= 5.3.7",
+		"nette/nette": "~2.2.0",
+		"dg/adminer-custom": "~1.0",
+		"brabijan/nette-seo-components": "dev-master",
+		"brabijan/bootstrap-ui-components": "dev-master",
+		"kdyby/doctrine": "@dev",
+		"kdyby/autowired": "~1.0",
+		"kdyby/bootstrap-form-renderer": "@dev",
+		"brabijan/images": "@dev"
+	},
+	"require-dev": {
+		"nette/tester": "~1.0"
+	},
+	"minimum-stability": "stable"
+}

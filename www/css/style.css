@@ -1,0 +1,47 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+html,
+body,
+ul,
+li,
+img,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+input {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.box {
+  width: 100%;
+  *zoom: 1;
+}
+.box:before,
+.box:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.box:after {
+  clear: both;
+}
+.box .box-inner {
+  width: 1100px;
+  margin: 0 auto;
+}

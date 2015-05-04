@@ -1,0 +1,16 @@
+{block #content}
+	<table class="table table-striped table-hover">
+		<tr>
+			<th class="icon_column"></th>
+			<th class="icon_column"></th>
+			<th>Jméno</th>
+			<th>Email</th>
+		</tr>
+		<tr n:foreach="$users as $user">
+			<td><a n:href=":Admin:Users:editUser $user->id"><i class="icon-pencil"></i></a></td>
+			<td><a n:href="deleteUser! $user->id"><i class="icon-trash"></i></a></td>
+			<td>{$user->name}</td>
+			<td>{$user->email}</td>
+		</tr>
+	</table>
+{/block}

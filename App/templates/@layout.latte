@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Project name - administrace</title>
+
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap.css">
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/bootstrap-responsive.css">
+	<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/admin.css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	<script src="{$basePath}/js/jquery.js"></script>
+	<script src="{$basePath}/js/bootstrap.js"></script>
+	<script src="{$basePath}/js/netteForms.js"></script>
+	<script src="{$basePath}/js/nette.ajax.js"></script>
+	<script src="{$basePath}/js/admin.js"></script>
+	<style>
+		.icon_column {
+			width: 14px;
+		}
+
+		body {
+			padding-top: 50px;
+		}
+	</style>
+</head>
+
+<body>
+<script> document.documentElement.className += ' js' </script>
+<div class="menu">
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" n:href=":Admin:Homepage:default">Project name</a>
+				<ul n:if="$user->isLoggedIn()" class="nav nav-pills">
+					<li n:class="$presenter->isLinkCurrent(':Users:*') ? active"><a n:href=":Users:default">Uživatelé</a></li>
+				</ul>
+				<ul class="nav nav-pills pull-right">
+					<li>
+						{if $user->isLoggedIn()}
+							<a n:href=":Sign:out">Odhlásit se</a>
+						{else}
+							<a n:href=":Sign:in">Přihlásit se</a>
+						{/if}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="container">
+		<div class="row">
+			<div class="span3 leftPanel" n:if='$renderSubmenu or isset($_l->blocks["leftPanel"])'>
+				{control submenu} {ifset #leftPanel}{include #leftPanel}{/ifset}
+			</div>
+			<div n:class='($renderSubmenu or isset($_l->blocks["leftPanel"])) ? span9 : span12'>
+				<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div> {include #content}
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

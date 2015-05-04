@@ -1,0 +1,11 @@
+.idea/
+log/*
+temp/*
+vendor/*
+!vendor/others
+
+.DS_Store
+!.gitignore
+!.htaccess
+!web.config
+App/config/config.local.neon
