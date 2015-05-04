@@ -57,6 +57,11 @@ services:
 	- App\Components\SetEventForm
 	- App\Components\SetChildForm
 
+	# priority sorter
+	- App\Model\Priority\Sorter
+	-
+		class: App\Model\Priority\FillPriorityFieldSubscriber
+		tags: [kdyby.subscriber]
 
 	# pdf
 	- App\Model\Pdf\PdfGenerator(%documentStorage%, %tempDir%)

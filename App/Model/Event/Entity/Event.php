@@ -42,6 +42,7 @@ class Event extends BaseEntity
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Child", mappedBy="event")
+	 * @ORM\OrderBy({"priority" = "ASC"})
 	 * @var Child[]|ArrayCollection
 	 */
 	protected $children;

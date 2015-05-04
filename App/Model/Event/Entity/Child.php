@@ -46,6 +46,9 @@ class Child extends BaseEntity
 	/** @ORM\Column(type="string") */
 	protected $instrument;
 
+	/** @ORM\Column(type="integer") */
+	protected $priority;
+
 
 
 	public function __construct(Event $event, User $teacher)

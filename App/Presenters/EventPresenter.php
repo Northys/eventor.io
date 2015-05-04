@@ -8,6 +8,7 @@ use App\Model\Event\Entity;
 use App\Model\Event\Facade;
 use App\Model\Pdf\PdfGenerator;
 use App\Model\Pdf\Template\EventReportFactory;
+use App\Model\Priority\Sorter;
 use Nette\Application\Responses\FileResponse;
 
 class EventPresenter extends SecuredPresenter
@@ -24,6 +25,9 @@ class EventPresenter extends SecuredPresenter
 
 	/** @var PdfGenerator @autowire */
 	public $pdfGenerator;
+
+	/** @var Sorter @autowire */
+	public $prioritySorter;
 
 	/** @var Entity\Event */
 	private $selectedEvent;
@@ -166,6 +170,20 @@ class EventPresenter extends SecuredPresenter
 		}
 		$this->flashMessage("Žák byl odebrán");
 		$this->redirect("this");
+	}
+
+
+
+	public function handleChangeOrder($id, $childId, $direction)
+	{
+		if ($childId and $menuItem = $this->childFacade->findChildById($childId)) {
+			if ($direction === "up") {
+				$this->prioritySorter->moveUp($menuItem);
+			} elseif ($direction === "down") {
+				$this->prioritySorter->moveDown($menuItem);
+			}
+		}
+		$this->redirect(":Event:detail", $id);
 	}
 
 }
