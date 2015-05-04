@@ -5,7 +5,7 @@
 # http://nette.org/security-warning
 #
 parameters:
-
+	documentStorage: %appDir%/../DocumentStorage
 
 php:
 	date.timezone: Europe/Prague
@@ -24,6 +24,10 @@ nette:
 doctrine:
 	metadata:
 		App: %appDir%
+
+decorator:
+	App\Model\Pdf\IPdfTemplate:
+		inject: true
 
 extensions:
 	seo: Brabijan\SeoComponents\DI\SeoExtension
@@ -52,6 +56,11 @@ services:
 	- App\Model\Event\Facade\Child
 	- App\Components\SetEventForm
 	- App\Components\SetChildForm
+
+
+	# pdf
+	- App\Model\Pdf\PdfGenerator(%documentStorage%, %tempDir%)
+	- App\Model\Pdf\Template\EventReportFactory
 
 	# static targets
 	-

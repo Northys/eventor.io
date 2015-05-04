@@ -6,6 +6,9 @@ use App\Components\SetChildForm;
 use App\Components\SetEventForm;
 use App\Model\Event\Entity;
 use App\Model\Event\Facade;
+use App\Model\Pdf\PdfGenerator;
+use App\Model\Pdf\Template\EventReportFactory;
+use Nette\Application\Responses\FileResponse;
 
 class EventPresenter extends SecuredPresenter
 {
@@ -15,6 +18,12 @@ class EventPresenter extends SecuredPresenter
 
 	/** @var Facade\Child @autowire */
 	public $childFacade;
+
+	/** @var EventReportFactory @autowire */
+	public $eventReportFactory;
+
+	/** @var PdfGenerator @autowire */
+	public $pdfGenerator;
 
 	/** @var Entity\Event */
 	private $selectedEvent;
@@ -124,6 +133,18 @@ class EventPresenter extends SecuredPresenter
 	 * handlers
 	 *
 	 */
+
+
+
+	public function handleDownloadReport($id)
+	{
+		if ($id and $event = $this->eventFacade->findEventById($id)) {
+			$report = $this->eventReportFactory->create();
+			$report->setEvent($event);
+			$filename = $this->pdfGenerator->savePdf($report, "event-" . $event->id . ".pdf");
+			$this->sendResponse(new FileResponse($filename));
+		}
+	}
 
 
 
