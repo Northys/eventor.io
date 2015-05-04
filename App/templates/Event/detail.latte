@@ -8,10 +8,16 @@
 		<tr>
 			<th class="icon_column"></th>
 			<th>name</th>
+			<th>teacher</th>
+			<th>song author</th>
+			<th>song name</th>
 		</tr>
 		<tr n:foreach="$event->children as $child">
 			<td><a n:href="deleteChild! $event->id, $child->id">delete</a></td>
 			<td>{$child->name}</td>
+			<td>{$child->teacher->class} - {$child->teacher->name}</td>
+			<td>{$child->songAuthor}</td>
+			<td>{$child->songName}</td>
 		</tr>
 	</table>
 
