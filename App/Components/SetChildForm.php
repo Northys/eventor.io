@@ -59,6 +59,7 @@ class SetChildForm extends Object
 		$form->addText("name", "Jméno:");
 		$form->addText("songAuthor", "Autor skladby:");
 		$form->addText("songName", "Jméno skladby:");
+		$form->addText("instrument", "Hudební nástroj:");
 		$form->addSelect("teacher", "Třída", $teacherList)
 			 ->setPrompt("-- Vyberte prosím učitele --");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
@@ -80,6 +81,7 @@ class SetChildForm extends Object
 		$child->name = $values->name;
 		$child->songAuthor = $values->songAuthor;
 		$child->songName = $values->songName;
+		$child->instrument = $values->instrument;
 		$this->childFacade->save($child);
 	}
 

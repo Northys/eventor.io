@@ -7,10 +7,11 @@
 	<table class="table table-hover table-striped">
 		<tr>
 			<th class="icon_column"></th>
-			<th>name</th>
-			<th>teacher</th>
-			<th>song author</th>
-			<th>song name</th>
+			<th>Jméno</th>
+			<th>Třída</th>
+			<th>Autor skladby</th>
+			<th>Název skladby</th>
+			<th>Hudební nástroj</th>
 		</tr>
 		<tr n:foreach="$event->children as $child">
 			<td><a n:href="deleteChild! $event->id, $child->id">delete</a></td>
@@ -18,6 +19,7 @@
 			<td>{$child->teacher->class} - {$child->teacher->name}</td>
 			<td>{$child->songAuthor}</td>
 			<td>{$child->songName}</td>
+			<td>{$child->instrument}</td>
 		</tr>
 	</table>
 

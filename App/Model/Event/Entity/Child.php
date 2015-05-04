@@ -43,6 +43,9 @@ class Child extends BaseEntity
 	/** @ORM\Column(type="string") */
 	protected $songName;
 
+	/** @ORM\Column(type="string") */
+	protected $instrument;
+
 
 
 	public function __construct(Event $event, User $teacher)
