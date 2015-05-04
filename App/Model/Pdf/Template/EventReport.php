@@ -27,6 +27,14 @@ class EventReport extends BaseTemplate implements IPdfTemplate
 		$this->template->setFile(__DIR__ . "/EventReport.latte");
 		$this->template->event = $this->event;
 
+		$teacher = array();
+		foreach ($this->event->children as $child) {
+			$teacherName = $child->teacher->class . " - " . $child->teacher->name;
+			$teacher[$teacherName][] = $child->name;
+		}
+
+		$this->template->teacherSummary = $teacher;
+
 		return $this->template;
 	}
 

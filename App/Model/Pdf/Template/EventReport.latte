@@ -1,1 +1,24 @@
-event report
+<html>
+<body>
+	<div style="text-align: center; width: 100%; font-size: 20px;">ZUŠ Velké Bílovice</div>
+	<div style="text-align: center; width: 100%; font-size: 32px; border-bottom: 2px solid black;">PROGRAM</div>
+	<div style="text-align: center; width: 100%; font-size: 16px; border-top: 2px solid black; margin: 2px;">Žákovská besídka 31. března 2015</div>
+
+	<table width="100%" border="1">
+		<tr n:foreach="$event->children as $child">
+			<td width="10%">{$iterator->counter}.</td>
+			<td>{$child->songAuthor}</td>
+			<td><strong>{$child->songName}</strong></td>
+			<td>{$child->name}</td>
+			<td></td>
+			<td width="10%">{$child->teacher->class}</td>
+		</tr>
+	</table>
+
+	<ul>
+		<li n:foreach="$teacherSummary as $teacher => $children">
+			{$teacher}: {$children|implode:', '}
+		</li>
+	</ul>
+</body>
+</html>
