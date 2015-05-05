@@ -84,7 +84,12 @@ class SetChildForm extends Object
 
 		$teacher = $this->userFacade->findUserById($values->teacher);
 
-		$child = $this->child ? $this->child : new Entity\Child($this->performance, $teacher);
+		if ($this->child) {
+			$child = $this->child;
+			$child->teacher = $teacher;
+		} else {
+			$child = new Entity\Child($this->performance, $teacher);
+		}
 		$child->name = $values->name;
 		$child->instrument = $values->instrument;
 		$this->childFacade->save($child);
