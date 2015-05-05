@@ -2,8 +2,9 @@
 
 namespace App\Presenters;
 
-use App\Components\SetPerformanceForm;
+use App\Components\SetChildForm;
 use App\Components\SetEventForm;
+use App\Components\SetPerformanceForm;
 use App\Model\Event\Entity;
 use App\Model\Event\Facade;
 use App\Model\Pdf\PdfGenerator;
@@ -20,6 +21,9 @@ class EventPresenter extends SecuredPresenter
 	/** @var Facade\Performance @autowire */
 	public $performanceFacade;
 
+	/** @var Facade\Child @autowire */
+	public $childFacade;
+
 	/** @var EventReportFactory @autowire */
 	public $eventReportFactory;
 
@@ -31,6 +35,9 @@ class EventPresenter extends SecuredPresenter
 
 	/** @var Entity\Event */
 	private $selectedEvent;
+
+	/** @var Entity\Performance */
+	private $selectedPerformance;
 
 
 
@@ -55,14 +62,6 @@ class EventPresenter extends SecuredPresenter
 	{
 		$this->template->eventList = $this->eventFacade->getEventList();
 	}
-
-
-
-	/*
-	 *
-	 * addEvent
-	 *
-	 */
 
 
 
@@ -96,7 +95,7 @@ class EventPresenter extends SecuredPresenter
 
 
 
-	public function createComponentAddChildForm(SetPerformanceForm $factory)
+	public function createComponentAddPerformanceForm(SetPerformanceForm $factory)
 	{
 		$factory->setEvent($this->selectedEvent);
 		$form = $factory->create();
@@ -133,6 +132,45 @@ class EventPresenter extends SecuredPresenter
 
 	/*
 	 *
+	 * performanceDetail
+	 *
+	 */
+
+
+
+	public function actionPerformanceDetail($id, $performanceId)
+	{
+		if (!$id or !$performanceId or !($this->selectedEvent = $this->eventFacade->findEventById($id)) or !($this->selectedPerformance = $this->performanceFacade->findPerformanceById($performanceId))) {
+			$this->setView("notFound");
+		}
+	}
+
+
+
+	public function createComponentAddChildForm(SetChildForm $factory)
+	{
+		$factory->setPerformance($this->selectedPerformance);
+		$form = $factory->create();
+		$form->onSuccess[] = function () {
+			$this->flashMessage("Žák byl přídán");
+			$this->redirect("this");
+		};
+
+		return $form;
+	}
+
+
+
+	public function renderPerformanceDetail()
+	{
+		$this->template->performance = $this->selectedPerformance;
+		$this->template->event = $this->selectedPerformance->event;
+	}
+
+
+
+	/*
+	 *
 	 * handlers
 	 *
 	 */
@@ -162,12 +200,23 @@ class EventPresenter extends SecuredPresenter
 
 
 
-	public function handleDeleteChild($id, $childId)
+	public function handleDeletePerformance($id, $performanceId)
 	{
-		if ($id and $childId and $child = $this->performanceFacade->findPerformanceById($childId)) {
-			$this->performanceFacade->delete($child);
+		if ($id and $performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {
+			$this->performanceFacade->delete($performance);
 		}
 		$this->flashMessage("Představení bylo odebráno");
+		$this->redirect("this");
+	}
+
+
+
+	public function handleDeleteChild($id, $performanceId, $childId)
+	{
+		if ($id and $childId and $performanceId and $child = $this->childFacade->findChildById($childId)) {
+			$this->childFacade->delete($child);
+		}
+		$this->flashMessage("Žák byl odebrán");
 		$this->redirect("this");
 	}
 

@@ -38,7 +38,7 @@ class Performance extends BaseEntity
 	protected $songName;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Child", mappedBy="event")
+	 * @ORM\OneToMany(targetEntity="Child", mappedBy="performance")
 	 * @var Child[]|ArrayCollection
 	 */
 	protected $children;

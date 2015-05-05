@@ -44,10 +44,10 @@ class Child extends BaseEntity
 
 
 
-	public function __construct(User $teacher, Performance $performance)
+	public function __construct(Performance $performance, User $teacher)
 	{
-		$this->teacher = $teacher;
 		$this->performance = $performance;
+		$this->teacher = $teacher;
 	}
 
 }
