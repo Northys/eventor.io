@@ -5,13 +5,25 @@
 	<div style="text-align: center; width: 100%; font-size: 16px; border-top: 2px solid black; margin: 2px;">Žákovská besídka 31. března 2015</div>
 
 	<table width="100%" border="1">
-		<tr n:foreach="$event->children as $child">
-			<td width="10%">{$iterator->counter}.</td>
-			<td>{$child->songAuthor}</td>
-			<td><strong>{$child->songName}</strong></td>
-			<td>{$child->name}</td>
-			<td>{$child->instrument}</td>
-			<td width="10%">{$child->teacher->class}</td>
+		<tr n:foreach="$event->performances as $performance">
+			<td valign="top" width="10%">{$iterator->counter}.</td>
+			<td valign="top">{$performance->songAuthor}</td>
+			<td valign="top"><strong>{$performance->songName}</strong></td>
+			<td valign="top">
+				{foreach $performance->children as $child}
+					{$child->name}{sep}<br/>{/sep}
+				{/foreach}
+			</td>
+			<td valign="top">
+				{foreach $performance->children as $child}
+					{$child->instrument}{sep}<br/>{/sep}
+				{/foreach}
+			</td>
+			<td valign="top" width="10%">
+				{foreach $performance->children as $child}
+					{$child->teacher->class}{sep}<br/>{/sep}
+				{/foreach}
+			</td>
 		</tr>
 	</table>
 
