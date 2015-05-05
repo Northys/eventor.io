@@ -1,5 +1,5 @@
 <?php
-
+umask(0);
 require __DIR__ . '/../vendor/autoload.php';
 
 $configurator = new Nette\Configurator;
