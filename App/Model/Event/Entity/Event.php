@@ -13,7 +13,7 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $name
  * @property $date
  * @property $place
- * @property Child[]|ArrayCollection $children
+ * @property Performance[]|ArrayCollection $performances
  */
 class Event extends BaseEntity
 {
@@ -41,28 +41,28 @@ class Event extends BaseEntity
 	protected $user;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Child", mappedBy="event")
+	 * @ORM\OneToMany(targetEntity="Performance", mappedBy="event")
 	 * @ORM\OrderBy({"priority" = "ASC"})
-	 * @var Child[]|ArrayCollection
+	 * @var Performance[]|ArrayCollection
 	 */
-	protected $children;
+	protected $performances;
 
 
 
 	public function __construct(User $user)
 	{
 		$this->user = $user;
-		$this->children = new ArrayCollection();
+		$this->performances = new ArrayCollection();
 	}
 
 
 
 	/**
-	 * @return Child[]|ArrayCollection
+	 * @return Performance[]|ArrayCollection
 	 */
-	public function getChildren()
+	public function getPerformances()
 	{
-		return $this->children;
+		return $this->performances;
 	}
 
 }

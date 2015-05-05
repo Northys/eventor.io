@@ -52,8 +52,11 @@ class Event extends Object
 	 */
 	public function save(Entity\Event $event)
 	{
-		foreach ($event->children as $child) {
-			$this->em->persist($child);
+		foreach ($event->performances as $performance) {
+			foreach ($performance->children as $child) {
+				$this->em->persist($child);
+			}
+			$this->em->persist($performance);
 		}
 		$this->em->persist($event);
 		$this->em->flush();
@@ -66,8 +69,11 @@ class Event extends Object
 	 */
 	public function delete(Entity\Event $event)
 	{
-		foreach ($event->children as $child) {
-			$this->em->remove($child);
+		foreach ($event->performances as $performance) {
+			foreach ($performance->children as $child) {
+				$this->em->remove($child);
+			}
+			$this->em->remove($performance);
 		}
 		$this->em->remove($event);
 		$this->em->flush();

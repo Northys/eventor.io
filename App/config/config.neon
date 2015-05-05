@@ -53,9 +53,10 @@ services:
 
 	# events
 	- App\Model\Event\Facade\Event
+	- App\Model\Event\Facade\Performance
 	- App\Model\Event\Facade\Child
 	- App\Components\SetEventForm
-	- App\Components\SetChildForm
+	- App\Components\SetPerformanceForm
 
 	# priority sorter
 	- App\Model\Priority\Sorter

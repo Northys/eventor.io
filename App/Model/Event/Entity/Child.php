@@ -9,7 +9,6 @@ use Kdyby\Doctrine\Entities\BaseEntity;
 /**
  * @ORM\Entity()
  * @property $id
- * @property Event $event
  * @property User $teacher
  * @property $name
  * @property $songAuthor
@@ -25,36 +24,30 @@ class Child extends BaseEntity
 	 */
 	protected $id;
 
-	/** @ORM\ManyToOne(targetEntity="Event", inversedBy="children") */
-	protected $event;
-
 	/**
 	 * @ORM\ManyToOne(targetEntity="App\Model\Security\User")
 	 * @var User
 	 */
 	protected $teacher;
 
+	/**
+	 * @ORM\ManyToOne(targetEntity="Performance", inversedBy="children")
+	 * @var Performance
+	 */
+	protected $performance;
+
 	/** @ORM\Column(type="string") */
 	protected $name;
 
 	/** @ORM\Column(type="string") */
-	protected $songAuthor;
-
-	/** @ORM\Column(type="string") */
-	protected $songName;
-
-	/** @ORM\Column(type="string") */
 	protected $instrument;
 
-	/** @ORM\Column(type="integer") */
-	protected $priority;
 
 
-
-	public function __construct(Event $event, User $teacher)
+	public function __construct(User $teacher, Performance $performance)
 	{
-		$this->event = $event;
 		$this->teacher = $teacher;
+		$this->performance = $performance;
 	}
 
 }

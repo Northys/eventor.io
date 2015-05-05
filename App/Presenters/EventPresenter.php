@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use App\Components\SetChildForm;
+use App\Components\SetPerformanceForm;
 use App\Components\SetEventForm;
 use App\Model\Event\Entity;
 use App\Model\Event\Facade;
@@ -17,8 +17,8 @@ class EventPresenter extends SecuredPresenter
 	/** @var Facade\Event @autowire */
 	public $eventFacade;
 
-	/** @var Facade\Child @autowire */
-	public $childFacade;
+	/** @var Facade\Performance @autowire */
+	public $performanceFacade;
 
 	/** @var EventReportFactory @autowire */
 	public $eventReportFactory;
@@ -39,7 +39,6 @@ class EventPresenter extends SecuredPresenter
 		parent::startup();
 		$this->submenu->addSection("Akce");
 		$this->submenu->addItem(":Event:default", "Seznam akcí");
-		$this->submenu->addItem(":Event:addAction", "Přidat akci");
 	}
 
 
@@ -97,12 +96,12 @@ class EventPresenter extends SecuredPresenter
 
 
 
-	public function createComponentAddChildForm(SetChildForm $factory)
+	public function createComponentAddChildForm(SetPerformanceForm $factory)
 	{
 		$factory->setEvent($this->selectedEvent);
 		$form = $factory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage("Žák byl přidán", "success");
+			$this->flashMessage("Představení bylo přidáno", "success");
 			$this->redirect("this");
 		};
 
@@ -165,10 +164,10 @@ class EventPresenter extends SecuredPresenter
 
 	public function handleDeleteChild($id, $childId)
 	{
-		if ($id and $childId and $child = $this->childFacade->findChildById($childId)) {
-			$this->childFacade->delete($child);
+		if ($id and $childId and $child = $this->performanceFacade->findPerformanceById($childId)) {
+			$this->performanceFacade->delete($child);
 		}
-		$this->flashMessage("Žák byl odebrán");
+		$this->flashMessage("Představení bylo odebráno");
 		$this->redirect("this");
 	}
 
@@ -176,7 +175,7 @@ class EventPresenter extends SecuredPresenter
 
 	public function handleChangeOrder($id, $childId, $direction)
 	{
-		if ($childId and $menuItem = $this->childFacade->findChildById($childId)) {
+		if ($childId and $menuItem = $this->performanceFacade->findPerformanceById($childId)) {
 			if ($direction === "up") {
 				$this->prioritySorter->moveUp($menuItem);
 			} elseif ($direction === "down") {
