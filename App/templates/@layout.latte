@@ -9,19 +9,18 @@
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{$basePath}/css/bootstrap-datepicker3.css">
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	<script src="{$basePath}/js/jquery.js"></script>
 	<script src="{$basePath}/js/bootstrap.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>
 	<script src="{$basePath}/js/nette.ajax.js"></script>
 	<script src="{$basePath}/js/admin.js"></script>
+	<script src="{$basePath}/js/bootstrap-datepicker.min.js"></script>
+	<script src="{$basePath}/js/bootstrap-datepicker.cs.min.js"></script>
 	<style>
 		.icon_column {
 			width: 14px;
-		}
-
-		body {
-			padding-top: 70px;
 		}
 	</style>
 </head>
@@ -29,7 +28,7 @@
 <body>
 <script> document.documentElement.className += ' js' </script>
 <div class="menu">
-	<header class="navbar navbar-fixed-top navbar-default" role="banner" id="snippet--menu">
+	<header class="navbar navbar-static-top navbar-default" role="banner" id="snippet--menu">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -65,5 +64,12 @@
 		</div>
 	</div>
 </div>
+<script>
+	$('.datepicker').datepicker({
+		format: "dd.mm.yyyy",
+		language: "cs",
+		todayHighlight: true
+	});
+</script>
 </body>
 </html>

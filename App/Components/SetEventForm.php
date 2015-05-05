@@ -45,7 +45,7 @@ class SetEventForm extends Object
 		$form = new Form();
 		$form->addGroup($this->event ? "Upravit událost" : "Přidat událost");
 		$form->addText("name", "Jméno:");
-		$form->addText("date", "Datum:");
+		$form->addText("date", "Datum:")->setAttribute('class', 'datepicker');
 		$form->addText("place", "Místo:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
 		$form->setRenderer(new Bs3FormRenderer());
