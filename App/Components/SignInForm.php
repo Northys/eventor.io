@@ -7,6 +7,7 @@ use Nette\Application\UI\Form;
 use Nette\Object;
 use Nette\Security\AuthenticationException;
 use Nette\Security\User;
+use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SignInForm extends Object
 {
@@ -37,7 +38,7 @@ class SignInForm extends Object
 		$form->addSubmit('login', 'Přihlásit se');
 
 		$form->onSuccess[] = $this->processForm;
-		$form->setRenderer(new BootstrapRenderer());
+		$form->setRenderer(new Bs3FormRenderer());
 
 		return $form;
 	}

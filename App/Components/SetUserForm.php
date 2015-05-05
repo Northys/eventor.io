@@ -7,6 +7,7 @@ use App\Model\Security\UserFacade;
 use Kdyby\BootstrapFormRenderer\BootstrapRenderer;
 use Nette\Application\UI\Form;
 use Nette\Object;
+use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SetUserForm extends Object
 {
@@ -62,7 +63,7 @@ class SetUserForm extends Object
 		$form->addText("class", "Třída:");
 		$form->addSubmit("send", ($this->user ? 'Upravit uživatele' : 'Přidat uživatele'));
 
-		$form->setRenderer(new BootstrapRenderer());
+		$form->setRenderer(new Bs3FormRenderer());
 		$form->onSuccess[] = $this->processForm;
 		if ($this->user) {
 			$form->setDefaults(array(

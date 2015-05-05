@@ -18,7 +18,8 @@
 		"kdyby/bootstrap-form-renderer": "@dev",
 		"brabijan/images": "@dev",
 		"rhrebecek/nette-identity-doctrine": "dev-master",
-        "mpdf/mpdf": "~6.0.0"
+        "mpdf/mpdf": "~6.0.0",
+		"nextras/forms": "^1.4"
 	},
 	"require-dev": {
 		"nette/tester": "~1.0"

@@ -9,6 +9,7 @@ use Nette\Application\UI\Form;
 use Nette\Object;
 use Nette\Security\User;
 use Nette\Utils\DateTime;
+use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SetEventForm extends Object
 {
@@ -47,6 +48,7 @@ class SetEventForm extends Object
 		$form->addText("date", "Datum:");
 		$form->addText("place", "Místo:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
+		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
 		if($this->event) {

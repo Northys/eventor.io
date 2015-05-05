@@ -7,6 +7,7 @@ use App\Model\Event\Facade;
 use App\Model\Security\UserFacade;
 use Nette\Application\UI\Form;
 use Nette\Object;
+use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SetChildForm extends Object
 {
@@ -24,13 +25,11 @@ class SetChildForm extends Object
 	private $child;
 
 
-
 	public function __construct(UserFacade $userFacade, Facade\Child $childFacade)
 	{
 		$this->userFacade = $userFacade;
 		$this->childFacade = $childFacade;
 	}
-
 
 
 	public function setEvent(Entity\Event $event)
@@ -39,12 +38,10 @@ class SetChildForm extends Object
 	}
 
 
-
 	public function setChild(Entity\Child $child)
 	{
 		$this->child = $child;
 	}
-
 
 
 	public function create()
@@ -61,14 +58,14 @@ class SetChildForm extends Object
 		$form->addText("songName", "Jméno skladby:");
 		$form->addText("instrument", "Hudební nástroj:");
 		$form->addSelect("teacher", "Třída", $teacherList)
-			 ->setPrompt("-- Vyberte prosím učitele --");
+			->setPrompt("-- Vyberte prosím učitele --");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
+		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
 
 		return $form;
 	}
-
 
 
 	public function processForm(Form $form)
