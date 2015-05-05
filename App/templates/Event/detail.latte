@@ -22,9 +22,9 @@
                                     class="glyphicon glyphicon-upload"></i></a></td>
                     <td><a n:href="changeOrder! $event->id, $performance->id, down"><i
                                     class="glyphicon glyphicon-download"></i></a></td>
-                    <td>{$performance->songAuthor}</td>
-                    <td>{$performance->songName}</td>
-					<td>{$performance->note}</td>
+                    <td>{$performance->songAuthor|nl2br|noescape}</td>
+                    <td>{$performance->songName|nl2br|noescape}</td>
+					<td>{$performance->note|nl2br|noescape}</td>
                 </tr>
             </table>
 

@@ -18,7 +18,7 @@
 			<td>{$event->date|date:'j.n.Y'}</td>
 			<td>{$event->place}</td>
 			<td>{$event->user->name}</td>
-			<td>{$event->note}</td>
+			<td>{$event->note|nl2br|noescape}</td>
 		</tr>
 	</table>
 
