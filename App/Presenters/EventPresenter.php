@@ -156,6 +156,7 @@ class EventPresenter extends SecuredPresenter
 		$factory->setPerformance($this->selectedPerformance);
 		$form = $factory->create();
 		$form->onSuccess[] = function () {
+			$this->flashMessage("Představení bylo upraveno", "success");
 			$this->redirect("this");
 		};
 
@@ -169,7 +170,7 @@ class EventPresenter extends SecuredPresenter
 		$factory->setPerformance($this->selectedPerformance);
 		$form = $factory->create();
 		$form->onSuccess[] = function () {
-			$this->flashMessage("Žák byl přídán");
+			$this->flashMessage("Žák byl přídán", "success");
 			$this->redirect("this");
 		};
 
@@ -213,6 +214,7 @@ class EventPresenter extends SecuredPresenter
 		$factory->setChild($this->selectedChild);
 		$form = $factory->create();
 		$form->onSuccess[] = function () {
+			$this->flashMessage("Žák byl upraven", "success");
 			$this->redirect(":Event:performanceDetail", array("id" => $this->selectedEvent->id, "performanceId" => $this->selectedPerformance->id));
 		};
 
@@ -246,7 +248,7 @@ class EventPresenter extends SecuredPresenter
 		if ($id and $event = $this->eventFacade->findEventById($id)) {
 			$this->eventFacade->delete($event);
 		}
-		$this->flashMessage("Událost byla odebrána");
+		$this->flashMessage("Událost byla odebrána", "success");
 		$this->redirect("this");
 	}
 
@@ -257,7 +259,7 @@ class EventPresenter extends SecuredPresenter
 		if ($id and $performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {
 			$this->performanceFacade->delete($performance);
 		}
-		$this->flashMessage("Představení bylo odebráno");
+		$this->flashMessage("Představení bylo odebráno", "success");
 		$this->redirect("this");
 	}
 
@@ -268,7 +270,7 @@ class EventPresenter extends SecuredPresenter
 		if ($id and $childId and $performanceId and $child = $this->childFacade->findChildById($childId)) {
 			$this->childFacade->delete($child);
 		}
-		$this->flashMessage("Žák byl odebrán");
+		$this->flashMessage("Žák byl odebrán", "success");
 		$this->redirect("this");
 	}
 
@@ -283,6 +285,7 @@ class EventPresenter extends SecuredPresenter
 				$this->prioritySorter->moveDown($menuItem);
 			}
 		}
+		$this->flashMessage("Představení bylo posunuto " . ($direction === "up" ? "nahoru" : "dolu"), "success");
 		$this->redirect(":Event:detail", $id);
 	}
 
