@@ -8,6 +8,7 @@
 			<th>Datum</th>
 			<th>Místo</th>
 			<th>Uživatel</th>
+			<th>Poznámka</th>
 		</tr>
 		<tr n:foreach="$eventList as $event">
 			<td><a n:href=":Event:detail $event->id"><i class="glyphicon glyphicon-list"></i></a></td>
@@ -17,6 +18,7 @@
 			<td>{$event->date|date:'j.n.Y'}</td>
 			<td>{$event->place}</td>
 			<td>{$event->user->name}</td>
+			<td>{$event->note}</td>
 		</tr>
 	</table>
 

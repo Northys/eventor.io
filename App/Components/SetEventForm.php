@@ -47,6 +47,7 @@ class SetEventForm extends Object
 		$form->addText("name", "Jméno:");
 		$form->addText("date", "Datum:")->setAttribute('class', 'datepicker');
 		$form->addText("place", "Místo:");
+		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
 		$form->setRenderer(new Bs3FormRenderer());
 
@@ -71,6 +72,7 @@ class SetEventForm extends Object
 		$event->name = $values->name;
 		$event->date = DateTime::from($values->date);
 		$event->place = $values->place;
+		$event->note = $values->note;
 
 		$this->eventFacade->save($event);
 	}

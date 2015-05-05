@@ -13,6 +13,7 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $songAuthor
  * @property $songName
  * @property Child[]|ArrayCollection $children
+ * @property $note
  * @property $priority
  */
 class Performance extends BaseEntity
@@ -42,6 +43,9 @@ class Performance extends BaseEntity
 	 * @var Child[]|ArrayCollection
 	 */
 	protected $children;
+
+	/** @ORM\Column(type="text") */
+	protected $note;
 
 	/** @ORM\Column(type="integer") */
 	protected $priority;

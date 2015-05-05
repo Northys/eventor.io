@@ -12,7 +12,8 @@
                     <th class="icon_column"></th>
                     <th>Autor skladby</th>
                     <th>Název skladby</th>
-                </tr>
+					<th>Poznámka</th>
+				</tr>
                 <tr n:foreach="$event->performances as $performance">
 					<td><a n:href=":Event:performanceDetail $event->id, $performance->id"><i class="glyphicon glyphicon-list"></i></a></td>
 					<td><a n:href="deletePerformance! $event->id, $performance->id"><i
@@ -23,6 +24,7 @@
                                     class="glyphicon glyphicon-download"></i></a></td>
                     <td>{$performance->songAuthor}</td>
                     <td>{$performance->songName}</td>
+					<td>{$performance->note}</td>
                 </tr>
             </table>
 

@@ -13,6 +13,7 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $name
  * @property $date
  * @property $place
+ * @property $note
  * @property Performance[]|ArrayCollection $performances
  */
 class Event extends BaseEntity
@@ -33,6 +34,9 @@ class Event extends BaseEntity
 
 	/** @ORM\Column(type="string") */
 	protected $place;
+
+	/** @ORM\Column(type="text") */
+	protected $note;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="App\Model\Security\User", inversedBy="events")

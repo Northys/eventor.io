@@ -147,6 +147,20 @@ class EventPresenter extends SecuredPresenter
 
 
 
+	public function createComponentEditPerformanceForm(SetPerformanceForm $factory)
+	{
+		$factory->setEvent($this->selectedEvent);
+		$factory->setPerformance($this->selectedPerformance);
+		$form = $factory->create();
+		$form->onSuccess[] = function () {
+			$this->redirect("this");
+		};
+
+		return $form;
+	}
+
+
+
 	public function createComponentAddChildForm(SetChildForm $factory)
 	{
 		$factory->setPerformance($this->selectedPerformance);

@@ -36,7 +36,7 @@ class SetPerformanceForm extends Object
 
 
 
-	public function setPerformance(Entity\Child $performance)
+	public function setPerformance(Entity\Performance $performance)
 	{
 		$this->performance = $performance;
 	}
@@ -47,12 +47,20 @@ class SetPerformanceForm extends Object
 	{
 		$form = new Form();
 		$form->addGroup($this->performance ? "Upravit představení" : "Přidat představení");
-		$form->addText("songAuthor", "Autor skladby:");
-		$form->addText("songName", "Jméno skladby:");
+		$form->addTextArea("songAuthor", "Autor skladby:");
+		$form->addTextArea("songName", "Jméno skladby:");
+		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->performance ? "Upravit představení" : "Přidat představení");
 		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
+		if ($this->performance) {
+			$form->setDefaults(array(
+				"songAuthor" => $this->performance->songAuthor,
+				"songName" => $this->performance->songName,
+				"note" => $this->performance->note,
+			));
+		}
 
 		return $form;
 	}
@@ -65,6 +73,7 @@ class SetPerformanceForm extends Object
 		$performance = $this->performance ? $this->performance : new Entity\Performance($this->event);
 		$performance->songAuthor = $values->songAuthor;
 		$performance->songName = $values->songName;
+		$performance->note = $values->note;
 		$this->performanceFacade->save($performance);
 	}
 
