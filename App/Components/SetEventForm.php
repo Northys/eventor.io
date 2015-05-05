@@ -57,6 +57,7 @@ class SetEventForm extends Object
 				"name" => $this->event->name,
 				"date" => $this->event->date->format('Y-m-d'),
 				"place" => $this->event->place,
+				"note" => $this->event->note,
 			));
 		}
 
