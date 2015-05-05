@@ -39,6 +39,9 @@ class EventPresenter extends SecuredPresenter
 	/** @var Entity\Performance */
 	private $selectedPerformance;
 
+	/** @var Entity\Child */
+	private $selectedChild;
+
 
 
 	public function startup()
@@ -179,6 +182,41 @@ class EventPresenter extends SecuredPresenter
 	{
 		$this->template->performance = $this->selectedPerformance;
 		$this->template->event = $this->selectedPerformance->event;
+	}
+
+
+
+	/*
+	 *
+	 * editChild
+	 *
+	 */
+
+
+
+	public function actionEditChild($id, $performanceId, $childId)
+	{
+		if (!$id or !$childId or !$performanceId or
+			!($this->selectedEvent = $this->eventFacade->findEventById($id)) or
+			!($this->selectedPerformance = $this->performanceFacade->findPerformanceById($performanceId)) or
+			!($this->selectedChild = $this->childFacade->findChildById($childId))
+		) {
+			$this->setView("notFound");
+		}
+	}
+
+
+
+	public function createComponentEditChildForm(SetChildForm $factory)
+	{
+		$factory->setPerformance($this->selectedPerformance);
+		$factory->setChild($this->selectedChild);
+		$form = $factory->create();
+		$form->onSuccess[] = function () {
+			$this->redirect(":Event:performanceDetail", array("id" => $this->selectedEvent->id, "performanceId" => $this->selectedPerformance->id));
+		};
+
+		return $form;
 	}
 
 

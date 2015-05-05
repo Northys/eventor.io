@@ -13,6 +13,7 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $name
  * @property $songAuthor
  * @property $songName
+ * @property $instrument
  */
 class Child extends BaseEntity
 {

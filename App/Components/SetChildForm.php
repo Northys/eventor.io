@@ -65,6 +65,13 @@ class SetChildForm extends Object
 		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
+		if ($this->child) {
+			$form->setDefaults(array(
+				"name" => $this->child->name,
+				"instrument" => $this->child->instrument,
+				"teacher" => $this->child->teacher ? $this->child->teacher->id : NULL,
+			));
+		}
 
 		return $form;
 	}
