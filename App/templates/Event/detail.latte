@@ -16,9 +16,9 @@
 			<th>Hudební nástroj</th>
 		</tr>
 		<tr n:foreach="$event->children as $child">
-			<td><a n:href="deleteChild! $event->id, $child->id">delete</a></td>
-			<td><a n:href="changeOrder! $event->id, $child->id, up">up</a></td>
-			<td><a n:href="changeOrder! $event->id, $child->id, down">down</a></td>
+			<td><a n:href="deleteChild! $event->id, $child->id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+			<td><a n:href="changeOrder! $event->id, $child->id, up"><i class="glyphicon glyphicon-upload"></i></a></td>
+			<td><a n:href="changeOrder! $event->id, $child->id, down"><i class="glyphicon glyphicon-download"></i></a></td>
 			<td>{$child->name}</td>
 			<td>{$child->teacher->class} - {$child->teacher->name}</td>
 			<td>{$child->songAuthor}</td>
