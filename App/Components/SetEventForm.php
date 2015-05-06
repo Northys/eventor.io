@@ -9,7 +9,6 @@ use Nette\Application\UI\Form;
 use Nette\Object;
 use Nette\Security\User;
 use Nette\Utils\DateTime;
-use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SetEventForm extends Object
 {
@@ -44,14 +43,18 @@ class SetEventForm extends Object
 	{
 		$form = new Form();
 		$form->addGroup($this->event ? "Upravit událost" : "Přidat událost");
-		$form->addText("name", "Jméno:");
-		$form->addText("date", "Datum:")->setAttribute('class', 'datepicker');
-		$form->addText("place", "Místo:");
+		$form->addText("name", "Jméno:")
+			 ->setRequired("Vyplňte prosím jméno");
+		$form->addText("date", "Datum:")
+			 ->setAttribute('class', 'datepicker')
+			 ->setRequired("Vyberte prosím datum");;
+		$form->addText("place", "Místo:")
+			 ->setRequired("Vyplňte prosím místo");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
 
 		$form->onSuccess[] = $this->processForm;
-		if($this->event) {
+		if ($this->event) {
 			$form->setDefaults(array(
 				"name" => $this->event->name,
 				"date" => $this->event->date->format('Y-m-d'),

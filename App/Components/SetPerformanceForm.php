@@ -6,7 +6,6 @@ use App\Model\Event\Entity;
 use App\Model\Event\Facade;
 use Nette\Application\UI\Form;
 use Nette\Object;
-use Nextras\Forms\Rendering\Bs3FormRenderer;
 
 class SetPerformanceForm extends Object
 {
@@ -47,8 +46,10 @@ class SetPerformanceForm extends Object
 	{
 		$form = new Form();
 		$form->addGroup($this->performance ? "Upravit představení" : "Přidat představení");
-		$form->addTextArea("songAuthor", "Autor skladby:");
-		$form->addTextArea("songName", "Jméno skladby:");
+		$form->addTextArea("songAuthor", "Autor skladby:")
+			 ->setRequired("Vyplňte prosím autora skladby");
+		$form->addTextArea("songName", "Jméno skladby:")
+			 ->setRequired("Vyplňte prosím jméno skladby");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->performance ? "Upravit představení" : "Přidat představení");
 

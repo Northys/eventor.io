@@ -57,10 +57,13 @@ class SetChildForm extends Object
 
 		$form = new Form();
 		$form->addGroup($this->child ? "Upravit žáka" : "Přidat žáka");
-		$form->addText("name", "Jméno:");
-		$form->addText("instrument", "Hudební nástroj:");
+		$form->addText("name", "Jméno:")
+			->setRequired("Vyplňte prosím jméno");
+		$form->addText("instrument", "Hudební nástroj:")
+			->setRequired("Vyplňte prosím hudební nástroj");
 		$form->addSelect("teacher", "Učitel", $teacherList)
-			 ->setPrompt("-- Vyberte prosím učitele --");
+			 ->setPrompt("-- Vyberte prosím učitele --")
+			 ->setRequired("Vyberte prosím učitele");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->setRenderer(new Bs3FormRenderer());
 
