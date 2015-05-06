@@ -12,8 +12,11 @@
                     <th class="icon_column"></th>
                     <th>Autor skladby</th>
                     <th>Název skladby</th>
-                    <th>Poznámka</th>
-                </tr>
+					<th>Poznámka</th>
+					<th>Žáci</th>
+					<th>Nástroj</th>
+					<th>Třída</th>
+				</tr>
                 <tr n:foreach="$event->performances as $performance">
                     <td><a n:href=":Event:performanceDetail $event->id, $performance->id"><i
                                     class="glyphicon glyphicon-list"></i></a></td>
@@ -26,6 +29,21 @@
                     <td>{$performance->songAuthor|nl2br|noescape}</td>
                     <td>{$performance->songName|nl2br|noescape}</td>
                     <td>{$performance->note|nl2br|noescape}</td>
+					<td>
+						{foreach $performance->children as $child}
+							{$child->name}{sep}<br/>{/sep}
+						{/foreach}
+					</td>
+					<td>
+						{foreach $performance->children as $child}
+							{$child->instrument}{sep}<br/>{/sep}
+						{/foreach}
+					</td>
+					<td>
+						{foreach $performance->children as $child}
+							{$child->teacher->class}{sep}<br/>{/sep}
+						{/foreach}
+					</td>
                 </tr>
             </table>
             <div class="well">
