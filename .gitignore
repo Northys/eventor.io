@@ -9,3 +9,5 @@ vendor/*
 !.htaccess
 !web.config
 App/config/config.local.neon
+
+*.pdf
