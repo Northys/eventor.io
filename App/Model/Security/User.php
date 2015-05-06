@@ -14,6 +14,7 @@ use Nette\Security\IIdentity;
  * @property $email
  * @property $password
  * @property $events
+ * @property $class
  */
 class User extends BaseEntity implements IIdentity
 {
