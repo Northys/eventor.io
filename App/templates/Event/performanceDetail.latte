@@ -16,7 +16,7 @@
                     <td><a n:href="deleteChild! $event->id, $performance->id, $child->id"><i
                                     class="glyphicon glyphicon-remove-circle"></i></a></td>
                     <td>{$child->name}</td>
-                    <td>{$child->teacher->class} - {$child->teacher->name}</td>
+                    <td>{$child->teacher->name}</td>
                     <td>{$child->instrument}</td>
                 </tr>
             </table>
@@ -26,7 +26,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label n:name="name">Jméno a příjmení žáka:</label>
-                                <input> n:name="name" class="form-control">
+                                <input n:name="name" class="form-control">
                                 <span class="help-block">Například Jan Novák.</span>
                             </div>
                         </div>
@@ -40,8 +40,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label n:name="teacher">Učitel:</label>
-                                <select n:name="teacher" class="form-control">
-                                <span class="help-block">Například tuba, klavír ale i zpěv.</span>
+                                <select n:name="teacher" class="form-control"></select>
+                                <span class="help-block">Vyberte učitele, u kterého žák studuje.</span>
                             </div>
                         </div>
                     </div>

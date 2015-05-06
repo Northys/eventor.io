@@ -7,8 +7,8 @@
 	<table width="100%" border="1">
 		<tr n:foreach="$event->performances as $performance">
 			<td valign="top" width="10%">{$iterator->counter}.</td>
-			<td valign="top">{$performance->songAuthor}</td>
-			<td valign="top"><strong>{$performance->songName}</strong></td>
+			<td valign="top">{$performance->songAuthor|nl2br|noescape}</td>
+			<td valign="top"><strong>{$performance->songName|nl2br|noescape}</strong></td>
 			<td valign="top">
 				{foreach $performance->children as $child}
 					{$child->name}{sep}<br/>{/sep}

@@ -30,7 +30,7 @@ class EventReport extends BaseTemplate implements IPdfTemplate
 		$teacher = array();
 		foreach ($this->event->performances as $performance) {
 			foreach ($performance->children as $child) {
-				$teacherName = $child->teacher->class . " - " . $child->teacher->name;
+				$teacherName = $child->teacher->name;
 				$teacher[$teacherName][] = $child->name;
 			}
 		}
