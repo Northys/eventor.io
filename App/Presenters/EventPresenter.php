@@ -11,6 +11,8 @@ use App\Model\Pdf\PdfGenerator;
 use App\Model\Pdf\Template\EventReportFactory;
 use App\Model\Priority\Sorter;
 use Nette\Application\Responses\FileResponse;
+use Nette\Iterators\CachingIterator;
+use Nette\Utils\Random;
 
 class EventPresenter extends SecuredPresenter
 {
@@ -236,6 +238,57 @@ class EventPresenter extends SecuredPresenter
 			$report->setEvent($event);
 			$filename = $this->pdfGenerator->savePdf($report, "event-" . $event->id . ".pdf");
 			$this->sendResponse(new FileResponse($filename));
+		}
+	}
+
+
+
+	public function handleDownloadExcel($id)
+	{
+		if ($id and $event = $this->eventFacade->findEventById($id)) {
+			$performances = array();
+			$performances[1] = array(
+				"A" => "#",
+				"B" => "Autor skladby",
+				"C" => "Název skladby",
+				"D" => "Poznámka",
+				"E" => "Žáci",
+				"F" => "Nástroj",
+				"G" => "Třída",
+			);
+			/** @var Entity\Performance $performance */
+			foreach ($event->performances as $performance) {
+				foreach ($iterator = new CachingIterator($performance->children) as $child) {
+					$tmpRow = array();
+					if ($iterator->isFirst()) {
+						$tmpRow["A"] = $iterator->counter;
+						$tmpRow["B"] = $performance->songAuthor;
+						$tmpRow["C"] = $performance->songName;
+						$tmpRow["D"] = $performance->note;
+					}
+					$tmpRow["E"] = $child->name;
+					$tmpRow["F"] = $child->instrument;
+					$tmpRow["G"] = $child->teacher->class . " - " . $child->teacher->name;
+					$performances[] = $tmpRow;
+				}
+			}
+
+
+
+			$excel = new \PHPExcel();
+			$sheet = $excel->getActiveSheet();
+			foreach ($performances as $row => $invitation) {
+				foreach ($invitation as $cell => $value) {
+					$sheet->setCellValue($cell . $row, trim($value));
+				}
+			}
+			$writer = \PHPExcel_IOFactory::createWriter($excel, "Excel2007");
+			$name = $this->context->getParameters()["tempDir"] . "/export/" . Random::generate();
+			if (!file_exists(dirname($name))) {
+				mkdir(dirname($name));
+			}
+			$writer->save($name);
+			$this->sendResponse(new FileResponse($name, "udalost-" . $event->id . ".xlsx"));
 		}
 	}
 
