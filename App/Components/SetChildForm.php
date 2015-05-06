@@ -64,6 +64,7 @@ class SetChildForm extends Object
 		$form->addSelect("teacher", "Učitel", $teacherList)
 			 ->setPrompt("-- Vyberte prosím učitele --")
 			 ->setRequired("Vyberte prosím učitele");
+		$form->addText("class", "Třída:");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->setRenderer(new Bs3FormRenderer());
 
@@ -73,6 +74,7 @@ class SetChildForm extends Object
 				"name" => $this->child->name,
 				"instrument" => $this->child->instrument,
 				"teacher" => $this->child->teacher ? $this->child->teacher->id : NULL,
+				"class" => $this->child->class,
 			));
 		}
 
@@ -95,6 +97,7 @@ class SetChildForm extends Object
 		}
 		$child->name = $values->name;
 		$child->instrument = $values->instrument;
+		$child->class = $values->class;
 		$this->childFacade->save($child);
 	}
 

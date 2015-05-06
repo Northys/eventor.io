@@ -7,8 +7,9 @@
                     <th class="icon_column"></th>
                     <th class="icon_column"></th>
                     <th>Jméno</th>
-                    <th>Třída</th>
-                    <th>Hudební nástroj</th>
+					<th>Třída</th>
+					<th>Učitel</th>
+					<th>Hudební nástroj</th>
                 </tr>
                 <tr n:foreach="$performance->children as $child">
                     <td><a n:href=":Event:editChild $event->id, $performance->id, $child->id"><i
@@ -16,7 +17,8 @@
                     <td><a n:href="deleteChild! $event->id, $performance->id, $child->id"><i
                                     class="glyphicon glyphicon-remove-circle"></i></a></td>
                     <td>{$child->name}</td>
-                    <td>{$child->teacher->name}</td>
+					<td>{$child->class}</td>
+					<td>{$child->teacher->name}</td>
                     <td>{$child->instrument}</td>
                 </tr>
             </table>

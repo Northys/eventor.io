@@ -14,7 +14,6 @@ use Nette\Security\IIdentity;
  * @property $email
  * @property $password
  * @property $events
- * @property $class
  */
 class User extends BaseEntity implements IIdentity
 {
@@ -40,9 +39,6 @@ class User extends BaseEntity implements IIdentity
 	 * @var \App\Model\Event\Entity\Event[]|ArrayCollection
 	 */
 	protected $events;
-
-	/** @ORM\Column(type="string", nullable=true) */
-	protected $class;
 
 
 

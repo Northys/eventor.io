@@ -14,6 +14,7 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $songAuthor
  * @property $songName
  * @property $instrument
+ * @property $class
  */
 class Child extends BaseEntity
 {
@@ -42,6 +43,9 @@ class Child extends BaseEntity
 
 	/** @ORM\Column(type="string") */
 	protected $instrument;
+
+	/** @ORM\Column(type="string", nullable=true) */
+	protected $class;
 
 
 

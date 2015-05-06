@@ -60,7 +60,6 @@ class SetUserForm extends Object
 					  ->setRequired('Vyplňte heslo znovu pro kontrolu')
 					  ->addRule(Form::EQUAL, 'Hesla se neshodují', $password);
 		}
-		$form->addText("class", "Třída:");
 		$form->addSubmit("send", ($this->user ? 'Upravit uživatele' : 'Přidat uživatele'));
 
 		$form->setRenderer(new Bs3FormRenderer());
@@ -87,12 +86,9 @@ class SetUserForm extends Object
 			if ($values->password) {
 				$user->setPassword($values->password);
 			}
-			$user->class = $values->class;
 			$this->userFacade->save($user);
 		} else {
 			$this->user = $this->userFacade->createUser($values->name, $values->email, $values->password);
-			$this->user->class = $values->class;
-			$this->userFacade->save($this->user);
 		}
 	}
 
