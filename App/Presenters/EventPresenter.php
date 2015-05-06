@@ -47,8 +47,6 @@ class EventPresenter extends SecuredPresenter
 	public function startup()
 	{
 		parent::startup();
-		$this->submenu->addSection("Akce");
-		$this->submenu->addItem(":Event:default", "Seznam akcí");
 	}
 
 

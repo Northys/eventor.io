@@ -49,7 +49,6 @@ class SetEventForm extends Object
 		$form->addText("place", "Místo:");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
-		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
 		if($this->event) {

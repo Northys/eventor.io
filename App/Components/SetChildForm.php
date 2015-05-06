@@ -52,14 +52,14 @@ class SetChildForm extends Object
 	{
 		$teacherList = array();
 		foreach ($this->userFacade->getUsersList() as $user) {
-			$teacherList[$user->id] = $user->class . " - " . $user->name;
+			$teacherList[$user->id] = $user->name;
 		}
 
 		$form = new Form();
 		$form->addGroup($this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->addText("name", "Jméno:");
 		$form->addText("instrument", "Hudební nástroj:");
-		$form->addSelect("teacher", "Třída", $teacherList)
+		$form->addSelect("teacher", "Učitel", $teacherList)
 			 ->setPrompt("-- Vyberte prosím učitele --");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->setRenderer(new Bs3FormRenderer());

@@ -51,7 +51,6 @@ class SetPerformanceForm extends Object
 		$form->addTextArea("songName", "Jméno skladby:");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->performance ? "Upravit představení" : "Přidat představení");
-		$form->setRenderer(new Bs3FormRenderer());
 
 		$form->onSuccess[] = $this->processForm;
 		if ($this->performance) {

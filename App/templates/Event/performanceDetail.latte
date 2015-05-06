@@ -1,21 +1,99 @@
 {block #content}
-	<table class="table table-hover table-striped">
-		<tr>
-			<th class="icon_column"></th>
-			<th class="icon_column"></th>
-			<th>Jméno</th>
-			<th>Třída</th>
-			<th>Hudební nástroj</th>
-		</tr>
-		<tr n:foreach="$performance->children as $child">
-			<td><a n:href=":Event:editChild $event->id, $performance->id, $child->id"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td><a n:href="deleteChild! $event->id, $performance->id, $child->id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
-			<td>{$child->name}</td>
-			<td>{$child->teacher->class} - {$child->teacher->name}</td>
-			<td>{$child->instrument}</td>
-		</tr>
-	</table>
+    <div class="row">
+        <div class=col-sm-8>
+            <h2>{$performance->songAuthor} - {$performance->songName}</h2>
+            <table class="table table-hover table-striped">
+                <tr>
+                    <th class="icon_column"></th>
+                    <th class="icon_column"></th>
+                    <th>Jméno</th>
+                    <th>Třída</th>
+                    <th>Hudební nástroj</th>
+                </tr>
+                <tr n:foreach="$performance->children as $child">
+                    <td><a n:href=":Event:editChild $event->id, $performance->id, $child->id"><i
+                                    class="glyphicon glyphicon-pencil"></i></a></td>
+                    <td><a n:href="deleteChild! $event->id, $performance->id, $child->id"><i
+                                    class="glyphicon glyphicon-remove-circle"></i></a></td>
+                    <td>{$child->name}</td>
+                    <td>{$child->teacher->class} - {$child->teacher->name}</td>
+                    <td>{$child->instrument}</td>
+                </tr>
+            </table>
+            <div class="well">
+                <form n:name="addChildForm">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label n:name="name">Jméno a příjmení žáka:</label>
+                                <input> n:name="name" class="form-control">
+                                <span class="help-block">Například Jan Novák.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label n:name="instrument">Hudební nástroj:</label>
+                                <input n:name="instrument" class="form-control">
+                                <span class="help-block">Například tuba, klavír ale i zpěv.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label n:name="teacher">Učitel:</label>
+                                <select n:name="teacher" class="form-control">
+                                <span class="help-block">Například tuba, klavír ale i zpěv.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-right">
+                                <input n:name="send" class="btn btn-success">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+                <h2>Upravit představení</h2>
 
-	{control editPerformanceForm}
-	{control addChildForm}
+                <form n:name="editPerformanceForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label n:name="songAuthor">Autor skladby:</label>
+                                <textarea n:name="songAuthor" class="form-control"></textarea>
+                                <span class="help-block">Například W.A. Mozart, můžete přidat i více autorů.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label n:name="songName">Název skladby:</label>
+                                <textarea n:name="songName" class="form-control"></textarea>
+                                <span class="help-block">Například Eine kleine Nachtmusik, můžete přidat i více skladeb.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label n:name="note">Poznámka:</label>
+                                <textarea n:name="note" class="form-control"></textarea>
+                                <span class="help-block">Toto je poznámka pro učitele, který akci vytvořil. Například sem můžete napsat kdo a na jaký nástroj doprovází toto představení.</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="pull-right">
+                                        <input n:name="send" class="btn btn-success">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {/block}
