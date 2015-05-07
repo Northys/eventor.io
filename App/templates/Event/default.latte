@@ -7,6 +7,7 @@
                     <th class="icon_column"></th>
                     <th class="icon_column"></th>
                     <th class="icon_column"></th>
+                    <th class="icon_column"></th>
                     <th>Název</th>
                     <th>Datum</th>
                     <th>Místo</th>
@@ -15,8 +16,8 @@
                 </tr>
                 <tr n:foreach="$eventList as $event">
                     <td><a n:href=":Event:detail $event->id"><i class="glyphicon glyphicon-list"></i></a></td>
-					<td><a n:href="downloadReport! $event->id"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-					<td><a n:href="downloadExcel! $event->id">excel<i class="glyphicon glyphicon-download-alt"></i></a></td>
+					<td><a n:href="downloadReport! $event->id"><i class="fa fa-file-pdf-o"></i></a></td>
+					<td><a n:href="downloadExcel! $event->id"><i class="fa fa-file-excel-o"></i></a></td>
                     <td><a n:href="deleteEvent! $event->id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
                     <td><a n:href=":Event:detail $event->id">{$event->name}</a></td>
                     <td>{$event->date|date:'j.n.Y'}</td>

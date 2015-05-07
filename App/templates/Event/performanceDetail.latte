@@ -7,9 +7,9 @@
                     <th class="icon_column"></th>
                     <th class="icon_column"></th>
                     <th>Jméno</th>
-					<th>Třída</th>
-					<th>Učitel</th>
 					<th>Hudební nástroj</th>
+                    <th>Ročník</th>
+                    <th>Učitel</th>
                 </tr>
                 <tr n:foreach="$performance->children as $child">
                     <td><a n:href=":Event:editChild $event->id, $performance->id, $child->id"><i
@@ -17,29 +17,36 @@
                     <td><a n:href="deleteChild! $event->id, $performance->id, $child->id"><i
                                     class="glyphicon glyphicon-remove-circle"></i></a></td>
                     <td>{$child->name}</td>
-					<td>{$child->class}</td>
-					<td>{$child->teacher->name}</td>
                     <td>{$child->instrument}</td>
+                    <td>{$child->class}</td>
+					<td>{$child->teacher->name}</td>
                 </tr>
             </table>
             <div class="well">
                 <form n:name="addChildForm">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label n:name="name">Jméno a příjmení žáka:</label>
                                 <input n:name="name" class="form-control">
                                 <span class="help-block">Například Jan Novák.</span>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label n:name="instrument">Hudební nástroj:</label>
                                 <input n:name="instrument" class="form-control">
                                 <span class="help-block">Například tuba, klavír ale i zpěv.</span>
                             </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label n:name="class">Ročník:</label>
+                                <input n:name="class" class="form-control">
+                                <span class="help-block">Například 1. roč, přípravka atp.</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <div class="form-group">
                                 <label n:name="teacher">Učitel:</label>
                                 <select n:name="teacher" class="form-control"></select>
