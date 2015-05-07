@@ -25,13 +25,11 @@ class SetChildForm extends Object
 	private $child;
 
 
-
 	public function __construct(UserFacade $userFacade, Facade\Child $childFacade)
 	{
 		$this->userFacade = $userFacade;
 		$this->childFacade = $childFacade;
 	}
-
 
 
 	public function setPerformance(Entity\Performance $performance)
@@ -40,12 +38,10 @@ class SetChildForm extends Object
 	}
 
 
-
 	public function setChild(Entity\Child $child)
 	{
 		$this->child = $child;
 	}
-
 
 
 	public function create()
@@ -59,12 +55,42 @@ class SetChildForm extends Object
 		$form->addGroup($this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->addText("name", "Jméno:")
 			->setRequired("Vyplňte prosím jméno");
-		$form->addText("instrument", "Hudební nástroj:")
-			->setRequired("Vyplňte prosím hudební nástroj");
+		$form->addSelect("instrument", "Hudební nástroj", [
+			"klavír" => "klavír",
+			"zob. flétna" => "zob. flétna",
+			"flétna" => "flétna",
+			"klarinet" => "klarinet",
+			"saxofon" => "saxofon",
+			"trubka" => "trubka",
+			"baskřídlovka" => "baskřídlovka",
+			"trombon" => "trombon",
+			"tuba" => "tuba",
+			"bicí nástroje" => "bicí nástroje",
+			"zpěv" => "zpěv",
+			"housle" => "housle",
+			"kontrabas" => "kontrabas",
+			"kytara" => "kytara",
+			"cimbál" => "cimbál",
+			"LDO" => "LDO"
+		])->setRequired("Vyplňte prosím hudební nástroj");
 		$form->addSelect("teacher", "Učitel", $teacherList)
-			 ->setPrompt("-- Vyberte prosím učitele --")
-			 ->setRequired("Vyberte prosím učitele");
-		$form->addText("class", "Třída:");
+			->setPrompt("-- Vyberte prosím učitele--")
+			->setRequired("Vyberte prosím učitele");
+		$form->addSelect("class", "Ročník:", [
+			"PHV" => "PHV",
+			"1. roč. " => "1. roč. ",
+			"2. roč. " => "2. roč. ",
+			"3. roč. " => "3. roč. ",
+			"4. roč. " => "4. roč. ",
+			"5. roč. " => "5. roč. ",
+			"6. roč. " => "6. roč. ",
+			"7. roč. " => "7. roč. ",
+			"1./II. " => "1./II. ",
+			"2./II. " => "2./II. ",
+			"3./II. " => "3./II. ",
+			"4./II. " => "4./II. ",
+			"j. h." => "j. h. "
+		])->setRequired("Vyberte prosím ročník");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->setRenderer(new Bs3FormRenderer());
 
@@ -73,14 +99,13 @@ class SetChildForm extends Object
 			$form->setDefaults(array(
 				"name" => $this->child->name,
 				"instrument" => $this->child->instrument,
-				"teacher" => $this->child->teacher ? $this->child->teacher->id : NULL,
+				"teacher" => $this->child->teacher ? $this->child->teacher->id : null,
 				"class" => $this->child->class,
 			));
 		}
 
 		return $form;
 	}
-
 
 
 	public function processForm(Form $form)

@@ -254,7 +254,7 @@ class EventPresenter extends SecuredPresenter
 				"D" => "Poznámka",
 				"E" => "Žáci",
 				"F" => "Nástroj",
-				"G" => "Třída",
+				"G" => "Ročník",
 			);
 			/** @var Entity\Performance $performance */
 			foreach ($event->performances as $performance) {
@@ -268,7 +268,8 @@ class EventPresenter extends SecuredPresenter
 					}
 					$tmpRow["E"] = $child->name;
 					$tmpRow["F"] = $child->instrument;
-					$tmpRow["G"] = $child->teacher->class . " - " . $child->teacher->name;
+					$tmpRow["G"] = $child->class;
+					$tmpRow["H"] = $child->teacher->name;
 					$performances[] = $tmpRow;
 				}
 			}
