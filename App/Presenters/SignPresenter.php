@@ -23,7 +23,7 @@ class SignPresenter extends BasePresenter
 	public function actionOut()
 	{
 		$this->user->logout();
-		$this->redirect(':Homepage:default');
+		$this->redirect(':Event:default');
 		$this->flashMessage('admin-sign.flashMessage.logoutSuccess', 'success');
 	}
 
