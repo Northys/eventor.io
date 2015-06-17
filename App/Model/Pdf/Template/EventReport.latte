@@ -39,7 +39,7 @@
 <strong>Jednotlivá čísla připravili tito učitelé::</strong>
 <ul>
     <li n:foreach="$teacherSummary as $teacher => $children">
-        {$teacher}: {$children|implode:', '}
+        {$teacher}: {array_unique($children)|implode:', '}
     </li>
 </ul>
 <p><strong>{$event->note}</strong></p>
