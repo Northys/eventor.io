@@ -1,29 +1,35 @@
 {block #content}
     <div class="row">
+        <div class="col-sm-12">
+            <ol class="breadcrumb">
+                <li><a n:href="Event:">Události</a></li>
+                <li class="active">Seznam událostí</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-sm-8">
             <h2>Seznam akcí</h2>
             <table class="table table-hover table-striped">
                 <tr>
-                    <th class="icon_column"></th>
-                    <th class="icon_column"></th>
-                    <th class="icon_column"></th>
-                    <th class="icon_column"></th>
                     <th>Název</th>
                     <th>Datum</th>
                     <th>Místo</th>
                     <th>Akci vytvořil</th>
                     <th>Poznámka</th>
+                    <th class="icon_column"></th>
+                    <th class="icon_column"></th>
+                    <th class="icon_column"></th>
                 </tr>
                 <tr n:foreach="$eventList as $event">
-                    <td><a n:href=":Event:detail $event->id"><i class="glyphicon glyphicon-list"></i></a></td>
-					<td><a n:href="downloadReport! $event->id"><i class="fa fa-file-pdf-o"></i></a></td>
-					<td><a n:href="downloadExcel! $event->id"><i class="fa fa-file-excel-o"></i></a></td>
-                    <td><a n:href="deleteEvent! $event->id"><i class="glyphicon glyphicon-remove-circle"></i></a></td>
                     <td><a n:href=":Event:detail $event->id">{$event->name}</a></td>
                     <td>{$event->date|date:'j.n.Y'}</td>
                     <td>{$event->place}</td>
                     <td>{$event->user->name}</td>
                     <td>{$event->note|nl2br|noescape}</td>
+                    <td><a n:href="downloadReport! $event->id" class="pdf"><i class="fa fa-file-pdf-o"></i></a></td>
+                    <td><a n:href="downloadExcel! $event->id" class="excel"><i class="fa fa-file-excel-o"></i></a></td>
+                    <td><a n:href="deleteEvent! $event->id" class="delete"><i class="fa fa-trash"></i></a></td>
                 </tr>
             </table>
         </div>

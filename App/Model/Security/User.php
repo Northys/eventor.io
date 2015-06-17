@@ -9,12 +9,12 @@ use Nette\Security\IIdentity;
 
 /**
  * @ORM\Entity()
+ * @ORM\Table(name="users")
  * @property $id
  * @property $name
  * @property $email
  * @property $password
  * @property $events
- * @ORM\Table(name="users")
  */
 class User extends BaseEntity implements IIdentity
 {
@@ -79,7 +79,7 @@ class User extends BaseEntity implements IIdentity
 
 	public function getRoles()
 	{
-		return array("admin");
+		return ["admin"];
 	}
 
 }
