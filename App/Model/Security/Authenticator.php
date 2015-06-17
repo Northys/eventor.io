@@ -55,11 +55,11 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 			$password = Nette\Utils\Strings::lower($password);
 		}
 		$password = substr($password, 0, 4096);
-		$options = $options ? : implode('$', array(
+		$options = $options ?: implode('$', [
 			'algo' => PHP_VERSION_ID < 50307 ? '$2a' : '$2y', // blowfish
 			'cost' => '07',
 			'salt' => Nette\Utils\Strings::random(22),
-		));
+		]);
 
 		return crypt($password, $options);
 	}

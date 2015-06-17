@@ -38,34 +38,34 @@ class CreateUser extends Command
 		$dialog = $this->getHelper('dialog');
 
 		$username = $dialog->askAndValidate($output, 'Please give the email:', function ($username) {
-				if (empty($username)) {
-					throw new \Exception('email can not be empty');
-				}
-
-				return $username;
+			if (empty($username)) {
+				throw new \Exception('email can not be empty');
 			}
+
+			return $username;
+		}
 		);
 		$this->addArgument('email');
 		$input->setArgument('email', $username);
 
 		$password = $dialog->askHiddenResponseAndValidate($output, 'Please enter the new password:', function ($password) {
-				if (empty($password)) {
-					throw new \Exception('Password can not be empty');
-				}
-
-				return $password;
+			if (empty($password)) {
+				throw new \Exception('Password can not be empty');
 			}
+
+			return $password;
+		}
 		);
 		$this->addArgument('password');
 		$input->setArgument('password', $password);
 
 		$name = $dialog->askAndValidate($output, 'Please give the name:', function ($name) {
-				if (empty($name)) {
-					throw new \Exception('Name can not be empty');
-				}
-
-				return $name;
+			if (empty($name)) {
+				throw new \Exception('Name can not be empty');
 			}
+
+			return $name;
+		}
 		);
 		$this->addArgument('name');
 		$input->setArgument('name', $name);

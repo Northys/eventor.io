@@ -2,7 +2,6 @@
 
 namespace App\Components;
 
-use Kdyby\BootstrapFormRenderer\BootstrapRenderer;
 use Nette\Application\UI\Form;
 use Nette\Object;
 use Nette\Security\AuthenticationException;
@@ -29,11 +28,11 @@ class SignInForm extends Object
 		$form = new Form();
 		$form->addGroup("Přihlásit se");
 		$form->addText('email', 'Email:', 50)
-			 ->setType("email")
-			 ->setRequired(Form::FILLED, 'Vyplňte prosím email');
+			->setType("email")
+			->setRequired(Form::FILLED, 'Vyplňte prosím email');
 
 		$form->addPassword('password', 'Heslo:', 50)
-			 ->addRule(Form::FILLED, 'Vyplňte prosím heslo:');
+			->addRule(Form::FILLED, 'Vyplňte prosím heslo:');
 		$form->addCheckbox('persistent', 'Pamatovat si mě na tomto počítači');
 		$form->addSubmit('login', 'Přihlásit se');
 

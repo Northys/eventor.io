@@ -11,7 +11,7 @@ class FillPriorityFieldSubscriber extends Nette\Object implements Subscriber
 
 	public function getSubscribedEvents()
 	{
-		return array('preFlush');
+		return ['preFlush'];
 	}
 
 
@@ -25,7 +25,7 @@ class FillPriorityFieldSubscriber extends Nette\Object implements Subscriber
 			if ($reflection->hasProperty("priority")) {
 				$repository = $em->getRepository($reflection->getName());
 				$result = $repository->createQueryBuilder("p")->select("MAX(p.priority)")->getQuery()->execute();
-				$entity->priority = ($result ? (int) $result[0][1] : 0) + 1;
+				$entity->priority = ($result ? (int)$result[0][1] : 0) + 1;
 			}
 		}
 	}

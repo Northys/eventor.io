@@ -47,19 +47,19 @@ class SetPerformanceForm extends Object
 		$form = new Form();
 		$form->addGroup($this->performance ? "Upravit představení" : "Přidat představení");
 		$form->addTextArea("songAuthor", "Autor skladby:")
-			 ->setRequired("Vyplňte prosím autora skladby");
+			->setRequired("Vyplňte prosím autora skladby");
 		$form->addTextArea("songName", "Jméno skladby:")
-			 ->setRequired("Vyplňte prosím jméno skladby");
+			->setRequired("Vyplňte prosím jméno skladby");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->performance ? "Upravit představení" : "Přidat představení");
 
 		$form->onSuccess[] = $this->processForm;
 		if ($this->performance) {
-			$form->setDefaults(array(
+			$form->setDefaults([
 				"songAuthor" => $this->performance->songAuthor,
-				"songName" => $this->performance->songName,
-				"note" => $this->performance->note,
-			));
+				"songName"   => $this->performance->songName,
+				"note"       => $this->performance->note,
+			]);
 		}
 
 		return $form;

@@ -4,7 +4,6 @@ namespace App\Components;
 
 use App\Model\Security\User;
 use App\Model\Security\UserFacade;
-use Kdyby\BootstrapFormRenderer\BootstrapRenderer;
 use Nette\Application\UI\Form;
 use Nette\Object;
 use Nextras\Forms\Rendering\Bs3FormRenderer;
@@ -39,36 +38,36 @@ class SetUserForm extends Object
 		$form = new Form();
 		$form->addGroup(($this->user ? 'Upravit uživatele' : 'Přidat uživatele'));
 		$form->addText("name", 'Jméno:')
-			 ->setRequired('Vyplňte jméno');
+			->setRequired('Vyplňte jméno');
 		$form->addText("email", 'Email:')
-			 ->setRequired('Vyplňte email')
-			 ->addRule(function ($ctrl) {
-				 if ($this->user and $this->user->email == $ctrl->getValue()) {
-					 return TRUE;
-				 }
+			->setRequired('Vyplňte email')
+			->addRule(function ($ctrl) {
+				if ($this->user and $this->user->email == $ctrl->getValue()) {
+					return TRUE;
+				}
 
-				 return (bool) !$this->userFacade->findUserByEmail($ctrl->getValue());
-			 }, 'Email je obsazen, zvolte prosím jiný');
+				return (bool)!$this->userFacade->findUserByEmail($ctrl->getValue());
+			}, 'Email je obsazen, zvolte prosím jiný');
 		$password = $form->addPassword("password", 'Heslo:');
 		$password2 = $form->addPassword("password2", 'Heslo znovu:');
 		if (!$this->user) {
 			$password->setRequired('Vyplňte heslo');
 			$password2->addRule(Form::FILLED, 'Vyplňte heslo znovu pro kontrolu')
-					  ->addRule(Form::EQUAL, 'Hesla se neshodují', $password);
+				->addRule(Form::EQUAL, 'Hesla se neshodují', $password);
 		} else {
 			$password2->addConditionOn($password, Form::FILLED)
-					  ->setRequired('Vyplňte heslo znovu pro kontrolu')
-					  ->addRule(Form::EQUAL, 'Hesla se neshodují', $password);
+				->setRequired('Vyplňte heslo znovu pro kontrolu')
+				->addRule(Form::EQUAL, 'Hesla se neshodují', $password);
 		}
 		$form->addSubmit("send", ($this->user ? 'Upravit uživatele' : 'Přidat uživatele'));
 
 		$form->setRenderer(new Bs3FormRenderer());
 		$form->onSuccess[] = $this->processForm;
 		if ($this->user) {
-			$form->setDefaults(array(
-				"name" => $this->user->name,
+			$form->setDefaults([
+				"name"  => $this->user->name,
 				"email" => $this->user->email,
-			));
+			]);
 		}
 
 		return $form;

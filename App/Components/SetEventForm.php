@@ -44,23 +44,23 @@ class SetEventForm extends Object
 		$form = new Form();
 		$form->addGroup($this->event ? "Upravit událost" : "Přidat událost");
 		$form->addText("name", "Jméno:")
-			 ->setRequired("Vyplňte prosím jméno");
+			->setRequired("Vyplňte prosím jméno");
 		$form->addText("date", "Datum:")
-			 ->setAttribute('class', 'datepicker')
-			 ->setRequired("Vyberte prosím datum");;
+			->setAttribute('class', 'datepicker')
+			->setRequired("Vyberte prosím datum");;
 		$form->addText("place", "Místo:")
-			 ->setRequired("Vyplňte prosím místo");
+			->setRequired("Vyplňte prosím místo");
 		$form->addTextArea("note", "Poznámka:");
 		$form->addSubmit("send", $this->event ? "Upravit událost" : "Přidat událost");
 
 		$form->onSuccess[] = $this->processForm;
 		if ($this->event) {
-			$form->setDefaults(array(
-				"name" => $this->event->name,
-				"date" => $this->event->date->format('Y-m-d'),
+			$form->setDefaults([
+				"name"  => $this->event->name,
+				"date"  => $this->event->date->format('Y-m-d'),
 				"place" => $this->event->place,
-				"note" => $this->event->note,
-			));
+				"note"  => $this->event->note,
+			]);
 		}
 
 		return $form;

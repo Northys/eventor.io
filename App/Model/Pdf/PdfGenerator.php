@@ -33,7 +33,7 @@ class PdfGenerator extends Object
 	public function savePdf(IPdfTemplate $pdfTemplate, $filename)
 	{
 		$filename = rtrim($this->documentStorage, "/") . "/" . $filename;
-		$html = (string) $pdfTemplate->render();
+		$html = (string)$pdfTemplate->render();
 
 		$mpdf = new \mPDF();
 		$mpdf->WriteHTML($html);

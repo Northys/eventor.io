@@ -27,7 +27,7 @@ class Child extends Object
 
 	public function findChildByEvent(Entity\Event $event)
 	{
-		return $this->childRepository->findBy(array("event" => $event));
+		return $this->childRepository->findBy(["event" => $event]);
 	}
 
 

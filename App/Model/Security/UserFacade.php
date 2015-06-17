@@ -12,7 +12,7 @@ class UserFacade extends Nette\Object
 	private $userDao;
 
 	/** @var array */
-	public $onUserCreated = array();
+	public $onUserCreated = [];
 
 
 
@@ -75,7 +75,7 @@ class UserFacade extends Nette\Object
 	 */
 	public function findUserByEmail($email)
 	{
-		return $this->userDao->findOneBy(array("email" => $email));
+		return $this->userDao->findOneBy(["email" => $email]);
 	}
 
 

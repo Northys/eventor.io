@@ -1,85 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="">
-	<meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow">
 
-	<title>Eventor - administrace</title>
+    <title>Eventor - administrace</title>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="{$basePath}/css/bootstrap-datepicker3.css">
-	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
-	<script src="{$basePath}/js/jquery.js"></script>
-	<script src="{$basePath}/js/bootstrap.js"></script>
-	<script src="{$basePath}/js/netteForms.js"></script>
-	<script src="{$basePath}/js/nette.ajax.js"></script>
-	<script src="{$basePath}/js/admin.js"></script>
-	<script src="{$basePath}/js/bootstrap-datepicker.min.js"></script>
-	<script src="{$basePath}/js/bootstrap-datepicker.cs.min.js"></script>
-	<style>
-		.icon_column {
-			width: 14px;
-		}
-		.excel {
-			color: green;
-		}
-		.pdf {
-			color: #7c0000;
-		}
-		.delete {
-			color: red;
-		}
-	</style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{$basePath}/css/bootstrap-datepicker3.css">
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico">
+    <script src="{$basePath}/js/jquery.js"></script>
+    <script src="{$basePath}/js/bootstrap.js"></script>
+    <script src="{$basePath}/js/netteForms.js"></script>
+    <script src="{$basePath}/js/nette.ajax.js"></script>
+    <script src="{$basePath}/js/admin.js"></script>
+    <script src="{$basePath}/js/bootstrap-datepicker.min.js"></script>
+    <script src="{$basePath}/js/bootstrap-datepicker.cs.min.js"></script>
+    <style>
+        .icon_column {
+            width: 14px;
+        }
+
+        .excel {
+            color: green;
+        }
+
+        .pdf {
+            color: #7c0000;
+        }
+
+        .delete {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
 <script> document.documentElement.className += ' js' </script>
 <div class="menu">
-	<header class="navbar navbar-static-top navbar-default" role="banner" id="snippet--menu">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Eventor.io</a>
-			</div>
-			<nav class="collapse navbar-collapse bs-navbar-collapse">
-				<ul n:if="$user->isLoggedIn()" class="nav navbar-nav">
-					<li n:class="$presenter->isLinkCurrent(':Users:*') ? active"><a n:href=":Users:default">Uživatelé</a></li>
-					<li n:class="$presenter->isLinkCurrent(':Event:*') ? active"><a n:href=":Event:default">Události</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a n:href="Sign:out">Odhlásit se</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+    <header class="navbar navbar-static-top navbar-default" role="banner" id="snippet--menu">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Eventor.io</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                <ul n:if="$user->isLoggedIn()" class="nav navbar-nav">
+                    <li n:class="$presenter->isLinkCurrent(':Users:*') ? active"><a
+                                n:href=":Users:default">Uživatelé</a></li>
+                    <li n:class="$presenter->isLinkCurrent(':Event:*') ? active"><a n:href=":Event:default">Události</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a n:href="Sign:out">Odhlásit se</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 </div>
 
 <div class="content">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-2 leftPanel" n:if='$renderSubmenu or isset($_l->blocks["leftPanel"])'>
-				{control submenu} {ifset #leftPanel}{include #leftPanel}{/ifset}
-			</div>
-			<div n:class='($renderSubmenu or isset($_l->blocks["leftPanel"])) ? col-sm-10 : col-sm-12'>
-				<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div> {include #content}
-			</div>
-		</div>
-	</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 leftPanel" n:if='$renderSubmenu or isset($_l->blocks["leftPanel"])'>
+                {control submenu} {ifset #leftPanel}{include #leftPanel}{/ifset}
+            </div>
+            <div n:class='($renderSubmenu or isset($_l->blocks["leftPanel"])) ? col-sm-10 : col-sm-12'>
+                <div n:foreach="$flashes as $flash"
+                     class="alert alert-{$flash->type}">{$flash->message}</div> {include #content}
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-	$('.dateinput').datepicker({
-		format: "dd.mm.yyyy",
-		language: "cs",
-		todayHighlight: true
-	});
+    $('.dateinput').datepicker({
+        format: "dd.mm.yyyy",
+        language: "cs",
+        todayHighlight: true
+    });
 </script>
 </body>
 </html>

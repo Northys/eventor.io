@@ -60,7 +60,6 @@ class EventPresenter extends SecuredPresenter
 	 */
 
 
-
 	public function renderDefault()
 	{
 		$this->template->eventList = $this->eventFacade->getEventList();
@@ -86,7 +85,6 @@ class EventPresenter extends SecuredPresenter
 	 * detail
 	 *
 	 */
-
 
 
 	public function actionDetail($id)
@@ -138,7 +136,6 @@ class EventPresenter extends SecuredPresenter
 	 * performanceDetail
 	 *
 	 */
-
 
 
 	public function actionPerformanceDetail($id, $performanceId)
@@ -194,7 +191,6 @@ class EventPresenter extends SecuredPresenter
 	 */
 
 
-
 	public function actionEditChild($id, $performanceId, $childId)
 	{
 		if (!$id or !$childId or !$performanceId or
@@ -215,7 +211,7 @@ class EventPresenter extends SecuredPresenter
 		$form = $factory->create();
 		$form->onSuccess[] = function () {
 			$this->flashMessage("Žák byl upraven", "success");
-			$this->redirect(":Event:performanceDetail", array("id" => $this->selectedEvent->id, "performanceId" => $this->selectedPerformance->id));
+			$this->redirect(":Event:performanceDetail", ["id" => $this->selectedEvent->id, "performanceId" => $this->selectedPerformance->id]);
 		};
 
 		return $form;
@@ -228,7 +224,6 @@ class EventPresenter extends SecuredPresenter
 	 * handlers
 	 *
 	 */
-
 
 
 	public function handleDownloadReport($id)
@@ -246,8 +241,8 @@ class EventPresenter extends SecuredPresenter
 	public function handleDownloadExcel($id)
 	{
 		if ($id and $event = $this->eventFacade->findEventById($id)) {
-			$performances = array();
-			$performances[1] = array(
+			$performances = [];
+			$performances[1] = [
 				"A" => "#",
 				"B" => "Autor skladby",
 				"C" => "Název skladby",
@@ -255,11 +250,11 @@ class EventPresenter extends SecuredPresenter
 				"E" => "Žáci",
 				"F" => "Nástroj",
 				"G" => "Ročník",
-			);
+			];
 			/** @var Entity\Performance $performance */
 			foreach ($event->performances as $performance) {
 				foreach ($iterator = new CachingIterator($performance->children) as $child) {
-					$tmpRow = array();
+					$tmpRow = [];
 					if ($iterator->isFirst()) {
 						$tmpRow["A"] = $iterator->counter;
 						$tmpRow["B"] = $performance->songAuthor;
@@ -273,7 +268,6 @@ class EventPresenter extends SecuredPresenter
 					$performances[] = $tmpRow;
 				}
 			}
-
 
 
 			$excel = new \PHPExcel();

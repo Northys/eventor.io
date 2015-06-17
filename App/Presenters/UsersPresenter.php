@@ -2,8 +2,8 @@
 
 namespace App\Presenters;
 
-use App\Components\SetUserForm;
 use App;
+use App\Components\SetUserForm;
 
 class UsersPresenter extends SecuredPresenter
 {
@@ -34,7 +34,6 @@ class UsersPresenter extends SecuredPresenter
 	 */
 
 
-
 	public function renderDefault()
 	{
 		$this->template->users = $this->userFacade->getUsersList();
@@ -47,7 +46,6 @@ class UsersPresenter extends SecuredPresenter
 	 * addUser
 	 *
 	 */
-
 
 
 	public function createComponentAddUserForm(SetUserForm $factory)
@@ -68,7 +66,6 @@ class UsersPresenter extends SecuredPresenter
 	 * editUser
 	 *
 	 */
-
 
 
 	public function actionEditUser($id)
@@ -102,7 +99,6 @@ class UsersPresenter extends SecuredPresenter
 	 */
 
 
-
 	public function handleDeleteUser($id)
 	{
 		$user = $this->userFacade->findUserById($id);
@@ -111,4 +107,4 @@ class UsersPresenter extends SecuredPresenter
 		$this->redirect(":Users:default");
 	}
 
-} 
+}
