@@ -25,7 +25,7 @@
                     <td>{$child->name}</td>
                     <td>{$child->instrument}</td>
                     <td>{$child->class}</td>
-                    <td>{$child->teacher->name}</td>
+                    <td>{if $child->teacher}{$child->teacher->name}{/if}</td>
                     <td>
                         <a n:href=":Event:editChild $event->id, $performance->id, $child->id">
                             <i class="glyphicon glyphicon-pencil"></i>
