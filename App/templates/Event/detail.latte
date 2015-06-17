@@ -13,7 +13,8 @@
             <h1>{$event->name}
                 <small>{$event->date|date:'j.n.Y'} @ {$event->place}</small>
             </h1>
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped" id="sort">
+                <thead>
                 <tr>
                     <th>Autor skladby</th>
                     <th>Název skladby</th>
@@ -22,10 +23,10 @@
                     <th>Nástroj</th>
                     <th>Ročník</th>
                     <th class="icon_column"></th>
-                    <th class="icon_column"></th>
-                    <th class="icon_column"></th>
                 </tr>
-                <tr n:foreach="$event->performances as $performance">
+                </thead>
+                <tbody>
+                <tr n:foreach="$event->performances as $performance" id="performance_{$performance->id}">
                     <td>
                         <a n:href=":Event:performanceDetail $event->id, $performance->id">{$performance->songAuthor|nl2br|noescape}</a>
                     </td>
@@ -48,13 +49,10 @@
                             {$child->class}{sep}<br/>{/sep}
                         {/foreach}
                     </td>
-                    <td><a n:href="changeOrder! $event->id, $performance->id, up"><i
-                                    class="glyphicon glyphicon-upload"></i></a></td>
-                    <td><a n:href="changeOrder! $event->id, $performance->id, down"><i
-                                    class="glyphicon glyphicon-download"></i></a></td>
                     <td><a n:href="deletePerformance! $event->id, $performance->id" class="delete"><i
                                     class="glyphicon glyphicon-trash"></i></a></td>
                 </tr>
+                </tbody>
             </table>
             <div class="well">
                 <h2>Přidat představení</h2>
@@ -145,4 +143,27 @@
             </div>
         </div>
     </div>
+    <script>
+        // Return a helper with preserved width of cells
+        var fixHelper = function (e, ui) {
+            ui.children().each(function () {
+                $(this).width($(this).width());
+            });
+            return ui;
+        };
+
+        $("#sort tbody").sortable({
+            helper: fixHelper,
+            update: function ( event, ui ) {
+                $.ajax( {
+                    url: {plink movePerformance!},
+                    method: "GET",
+                    data: {
+                        performanceId: $( ui.item ).attr( 'id' ).match( /\d+/ )[ 0 ],
+                        position: $( ui.item ).index() + 1
+                    }
+                } );
+            }
+        }).disableSelection();
+    </script>
 {/block}

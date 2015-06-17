@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c4db69b46b0c18458cef5effddae46ed",
+    "hash": "43733903dcd02c153661da46b7a3f1d4",
     "packages": [
         {
             "name": "brabijan/bootstrap-ui-components",
@@ -1382,6 +1382,59 @@
                 "twig"
             ],
             "time": "2015-05-04 14:29:27"
+        },
+        {
+            "name": "librette/doctrine-sortable",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/librette/doctrine-sortable.git",
+                "reference": "90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/librette/doctrine-sortable/zipball/90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e",
+                "reference": "90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e",
+                "shasum": ""
+            },
+            "require": {
+                "kdyby/doctrine": "@dev",
+                "kdyby/events": "@dev",
+                "nette/di": "~2.2",
+                "nette/utils": "~2.2"
+            },
+            "require-dev": {
+                "nette/tester": "@dev",
+                "tracy/tracy": "@dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Librette\\Doctrine\\Sortable\\": "src/"
+                },
+                "files": [
+                    "src/exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Matějka",
+                    "homepage": "http://www.matej21.cz"
+                }
+            ],
+            "keywords": [
+                "doctrine",
+                "librette",
+                "nette",
+                "sortable"
+            ],
+            "time": "2015-02-27 15:41:35"
         },
         {
             "name": "mpdf/mpdf",

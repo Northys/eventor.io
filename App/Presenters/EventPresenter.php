@@ -10,6 +10,7 @@ use App\Model\Event\Facade;
 use App\Model\Pdf\PdfGenerator;
 use App\Model\Pdf\Template\EventReportFactory;
 use App\Model\Priority\Sorter;
+use Kdyby\Doctrine\EntityManager;
 use Nette\Application\Responses\FileResponse;
 use Nette\Iterators\CachingIterator;
 use Nette\Utils\Random;
@@ -32,8 +33,8 @@ class EventPresenter extends SecuredPresenter
 	/** @var PdfGenerator @autowire */
 	public $pdfGenerator;
 
-	/** @var Sorter @autowire */
-	public $prioritySorter;
+	/** @var EntityManager @autowire */
+	public $entityManager;
 
 	/** @var Entity\Event */
 	private $selectedEvent;
@@ -322,16 +323,14 @@ class EventPresenter extends SecuredPresenter
 
 
 
-	public function handleChangeOrder($id, $childId, $direction)
+	public function handleMovePerformance($id, $performanceId, $position)
 	{
-		if ($childId and $menuItem = $this->performanceFacade->findPerformanceById($childId)) {
-			if ($direction === "up") {
-				$this->prioritySorter->moveUp($menuItem);
-			} elseif ($direction === "down") {
-				$this->prioritySorter->moveDown($menuItem);
-			}
+		if ($performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {
+			$performance->setPosition($position);
 		}
-		$this->flashMessage("Představení bylo posunuto " . ($direction === "up" ? "nahoru" : "dolu"), "success");
+		dump($performance);
+		$this->entityManager->flush();
+		$this->flashMessage("Představení bylo posunuto", "success");
 		$this->redirect(":Event:detail", $id);
 	}
 

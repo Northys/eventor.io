@@ -5,6 +5,8 @@ namespace App\Model\Event\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Kdyby\Doctrine\Entities\BaseEntity;
+use Librette\Doctrine\Sortable\ISortable;
+use Librette\Doctrine\Sortable\TSortable;
 
 /**
  * @ORM\Entity()
@@ -16,8 +18,10 @@ use Kdyby\Doctrine\Entities\BaseEntity;
  * @property $note
  * @property $priority
  */
-class Performance extends BaseEntity
+class Performance extends BaseEntity implements ISortable
 {
+
+	use TSortable;
 
 	/**
 	 * @ORM\Column(name="id", type="integer")
@@ -39,7 +43,7 @@ class Performance extends BaseEntity
 	protected $songName;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Child", mappedBy="performance")
+	 * @ORM\OneToMany(targetEntity="Child", mappedBy="performance", orphanRemoval=true)
 	 * @var Child[]|ArrayCollection
 	 */
 	protected $children;

@@ -37,6 +37,7 @@ extensions:
 	annotations: Kdyby\Annotations\DI\AnnotationsExtension
 	doctrine: Kdyby\Doctrine\DI\OrmExtension
 	doctrine2identity: Majkl578\NetteAddons\Doctrine2Identity\DI\IdentityExtension
+	librette.doctrine.sortable: Librette\Doctrine\Sortable\DI\SortableExtension
 
 services:
 	- App\Router\RouterFactory
@@ -58,9 +59,6 @@ services:
 	- App\Components\SetEventForm
 	- App\Components\SetPerformanceForm
 	- App\Components\SetChildForm
-
-	# priority sorter
-	- App\Model\Priority\Sorter
 	-
 		class: App\Model\Priority\FillPriorityFieldSubscriber
 		tags: [kdyby.subscriber]

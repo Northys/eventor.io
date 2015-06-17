@@ -28,13 +28,15 @@ class EventReport extends BaseTemplate implements IPdfTemplate
 		$this->template->event = $this->event;
 
 		$teachers = [];
+		$iterator = 0;
 		foreach ($this->event->performances as $performance) {
+			$iterator++;
 			foreach ($performance->children as $child) {
 				if (!$child->teacher) {
 					continue;
 				}
 				$teacherName = $child->teacher->name;
-				$teachers[$teacherName][] = $performance->priority;
+				$teachers[$teacherName][] = $iterator;
 			}
 		}
 

@@ -45,8 +45,8 @@ class Event extends BaseEntity
 	protected $user;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Performance", mappedBy="event")
-	 * @ORM\OrderBy({"priority" = "ASC"})
+	 * @ORM\OneToMany(targetEntity="Performance", mappedBy="event", orphanRemoval=true)
+	 * @ORM\OrderBy({"position" = "ASC"})
 	 * @var Performance[]|ArrayCollection
 	 */
 	protected $performances;

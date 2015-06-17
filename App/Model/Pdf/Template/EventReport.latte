@@ -7,7 +7,7 @@
 
 <table width="100%" border="0" style="border-collapse: collapse;">
     <tr n:foreach="$event->performances as $performance">
-        <td style="padding: 6px 10px" valign="top" width="10%">{$iterator->counter}.</td>
+        <td style="padding: 6px 10px" valign="top" width="6%">{$iterator->counter}.</td>
         <td style="padding: 6px 10px" valign="top">{$performance->songAuthor|nl2br|noescape}</td>
         <td style="padding: 6px 10px" valign="top">
             {$performance->songName|nl2br|noescape}
@@ -36,12 +36,14 @@
     </tr>
 </table>
 <br>
-<strong>Jednotlivá čísla připravili tito učitelé::</strong>
-<ul>
-    <li n:foreach="$teacherSummary as $teacher => $children">
-        {$teacher}: {array_unique($children)|implode:', '}
-    </li>
-</ul>
-<p><strong>{$event->note}</strong></p>
+<div style="page-break-inside:avoid !important;">
+    <strong>Jednotlivá čísla připravili tito učitelé::</strong>
+    <ul>
+        <li n:foreach="$teacherSummary as $teacher => $children">
+            {$teacher}: {array_unique($children)|implode:', '}
+        </li>
+    </ul>
+    <p><strong>{$event->note}</strong></p>
+</div>
 </body>
 </html>
