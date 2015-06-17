@@ -26,7 +26,7 @@
                     <td>{$event->date|date:'j.n.Y'}</td>
                     <td>{$event->place}</td>
                     <td>{$event->user->name}</td>
-                    <td>{$event->note|nl2br|noescape}</td>
+                    <td>{$event->note|truncate:100}</td>
                     <td><a n:href="downloadReport! $event->id" class="pdf"><i class="fa fa-file-pdf-o"></i></a></td>
                     <td><a n:href="downloadExcel! $event->id" class="excel"><i class="fa fa-file-excel-o"></i></a></td>
                     <td><a n:href="deleteEvent! $event->id" class="delete"><i class="fa fa-trash"></i></a></td>
