@@ -10,4 +10,5 @@ vendor/*
 !web.config
 App/config/config.local.neon
 
-*.pdf
+DocumentStorage/*.pdf
+
