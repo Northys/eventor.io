@@ -51,9 +51,6 @@ class Performance extends BaseEntity implements ISortable
 	/** @ORM\Column(type="text") */
 	protected $note;
 
-	/** @ORM\Column(type="integer") */
-	protected $priority;
-
 
 
 	public function __construct(Event $event)
