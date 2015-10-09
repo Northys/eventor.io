@@ -74,6 +74,7 @@ class SetPerformanceForm extends Object
 		$performance->songAuthor = $values->songAuthor;
 		$performance->songName = $values->songName;
 		$performance->note = $values->note;
+		$performance->setPosition(999);
 		$this->performanceFacade->save($performance);
 	}
 
