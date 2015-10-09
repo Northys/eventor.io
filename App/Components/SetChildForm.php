@@ -76,11 +76,11 @@ class SetChildForm extends Object
 			"kytara"           => "kytara",
 			"cimbál"           => "cimbál",
 			"LDO"              => "LDO",
-			"safoxon" => "safoxon",
-			"altsafoxon" => "altsafoxon",
-			"tenorsaxofon" => "tenorsaxofon",
-			"baritonsaxofon" => "baritonsaxofon",
-			"sopránsaxofon" => "sopránsaxofon",
+			"safoxon"          => "safoxon",
+			"altsafoxon"       => "altsafoxon",
+			"tenorsaxofon"     => "tenorsaxofon",
+			"baritonsaxofon"   => "baritonsaxofon",
+			"sopránsaxofon"    => "sopránsaxofon",
 			"cimbálová muzika" => "cimbálová muzika",
 			"dechová hudba"    => "dechová hudba",
 			"komorní hra"      => "komorní hra",
@@ -93,13 +93,13 @@ class SetChildForm extends Object
 			"kytarové trio"    => "kytarové trio",
 			"taneční obor"     => "taneční obor",
 			"klarinetové duo"  => "klarinetové duo",
-
+			"sbor"             => "sbor",
 		])
 			->setPrompt("-- Vyberte prosím nástroj --")
 			->setRequired("Vyplňte prosím hudební nástroj");
 
 		$form->addSelect("teacher", "Učitel", $teacherList)
-			->setPrompt("-- Vyberte prosím učitele --");
+			->setPrompt("-- Bez učitele --");
 
 		$form->addSelect("class", "Ročník:", [
 			"PHV"      => "PHV",
@@ -116,7 +116,7 @@ class SetChildForm extends Object
 			"4./II. "  => "4./II. ",
 			"j. h."    => "j. h. ",
 		])
-			->setPrompt("-- Vyberte prosím ročník --");
+			->setPrompt("-- Bez ročníku --");
 		$form->addSubmit("send", $this->child ? "Upravit žáka" : "Přidat žáka");
 		$form->setRenderer(new Bs3FormRenderer());
 

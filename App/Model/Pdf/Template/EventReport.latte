@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <body>
 <div style="text-align: center; width: 100%; font-size: 20px;">ZUŠ Velké Bílovice</div>
 <div style="text-align: center; width: 100%; font-size: 32px; border-bottom: 2px solid black;">PROGRAM</div>
@@ -7,7 +7,7 @@
 
 <table width="100%" border="0" style="border-collapse: collapse;">
     <tr n:foreach="$event->performances as $performance">
-        <td style="padding: 6px 10px" valign="top" width="6%">{$iterator->counter}.</td>
+        <td style="padding: 6px 10px" valign="top" width="7%">{$iterator->counter}.</td>
         <td style="padding: 6px 10px" valign="top">{$performance->songAuthor|nl2br|noescape}</td>
         <td style="padding: 6px 10px" valign="top">
             {$performance->songName|nl2br|noescape}
@@ -37,12 +37,12 @@
 </table>
 <br>
 <div style="page-break-inside:avoid !important;">
-    <strong>Jednotlivá čísla připravili tito učitelé:</strong>
-    <ul>
-        <li n:foreach="$teacherSummary as $teacher => $children">
-            {$teacher}: {array_unique($children)|implode:', '}
-        </li>
-    </ul>
+    <strong>
+        Jednotlivá čísla připravili tito učitelé:<br>
+        {foreach $teacherSummary as $teacher => $children}
+            {$teacher|replace:" ":"&nbsp;"|noescape} ({array_unique($children)|implode:', '}){sep}, {/sep}{last}.{/last}
+        {/foreach}
+    </strong>
     <p><strong>{$event->note}</strong></p>
 </div>
 </body>

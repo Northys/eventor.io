@@ -9,7 +9,6 @@ use App\Model\Event\Entity;
 use App\Model\Event\Facade;
 use App\Model\Pdf\PdfGenerator;
 use App\Model\Pdf\Template\EventReportFactory;
-use App\Model\Priority\Sorter;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Application\Responses\FileResponse;
 use Nette\Iterators\CachingIterator;
@@ -328,7 +327,6 @@ class EventPresenter extends SecuredPresenter
 		if ($performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {
 			$performance->setPosition($position);
 		}
-		dump($performance);
 		$this->entityManager->flush();
 		$this->flashMessage("Představení bylo posunuto", "success");
 		$this->redirect(":Event:detail", $id);
