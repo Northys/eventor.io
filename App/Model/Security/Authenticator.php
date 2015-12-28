@@ -4,6 +4,9 @@ namespace App\Model\Security;
 
 use Nette;
 
+/**
+ * Class Authenticator
+ */
 class Authenticator extends Nette\Object implements Nette\Security\IAuthenticator
 {
 
@@ -11,7 +14,11 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 	private $userFacade;
 
 
-
+	/**
+	 * Authenticator constructor.
+	 *
+	 * @param \App\Model\Security\UserFacade $userFacade
+	 */
 	public function __construct(UserFacade $userFacade)
 	{
 		$this->userFacade = $userFacade;

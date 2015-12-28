@@ -5,6 +5,9 @@ namespace App\Model\Pdf;
 use Nette\Object;
 use Nette\Utils\FileSystem;
 
+/**
+ * Class PdfGenerator
+ */
 class PdfGenerator extends Object
 {
 
@@ -12,7 +15,12 @@ class PdfGenerator extends Object
 	private $documentStorage;
 
 
-
+	/**
+	 * PdfGenerator constructor.
+	 *
+	 * @param $documentStorage
+	 * @param $tempDir
+	 */
 	public function __construct($documentStorage, $tempDir)
 	{
 		define("_MPDF_TEMP_PATH", $tempDir . "/cache/mPdf/tmp/");
@@ -29,7 +37,12 @@ class PdfGenerator extends Object
 	}
 
 
-
+	/**
+	 * @param \App\Model\Pdf\IPdfTemplate $pdfTemplate
+	 * @param $filename
+	 *
+	 * @return string
+	 */
 	public function savePdf(IPdfTemplate $pdfTemplate, $filename)
 	{
 		$filename = rtrim($this->documentStorage, "/") . "/" . $filename;

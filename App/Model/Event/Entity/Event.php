@@ -52,7 +52,11 @@ class Event extends BaseEntity
 	protected $performances;
 
 
-
+	/**
+	 * Event constructor.
+	 *
+	 * @param \App\Model\Security\User $user
+	 */
 	public function __construct(User $user)
 	{
 		$this->user = $user;

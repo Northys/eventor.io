@@ -6,6 +6,9 @@ use App\Model\Event\Entity\Event;
 use App\Model\Pdf\IPdfTemplate;
 use Nette\Application\UI\ITemplate;
 
+/**
+ * Class EventReport
+ */
 class EventReport extends BaseTemplate implements IPdfTemplate
 {
 
@@ -13,7 +16,9 @@ class EventReport extends BaseTemplate implements IPdfTemplate
 	private $event;
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Event $event
+	 */
 	public function setEvent(Event $event)
 	{
 		$this->event = $event;
@@ -48,6 +53,11 @@ class EventReport extends BaseTemplate implements IPdfTemplate
 }
 
 
+/**
+ * Interface EventReportFactory
+ *
+ * @package App\Model\Pdf\Template
+ */
 interface EventReportFactory
 {
 

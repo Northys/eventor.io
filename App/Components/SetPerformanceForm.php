@@ -7,10 +7,13 @@ use App\Model\Event\Facade;
 use Nette\Application\UI\Form;
 use Nette\Object;
 
+/**
+ * Class SetPerformanceForm
+ */
 class SetPerformanceForm extends Object
 {
 
-	/** @var Facade\Child */
+	/** @var Facade\Performance */
 	private $performanceFacade;
 
 	/** @var Entity\Event */
@@ -20,28 +23,38 @@ class SetPerformanceForm extends Object
 	private $performance;
 
 
-
+	/**
+	 * SetPerformanceForm constructor.
+	 *
+	 * @param \App\Model\Event\Facade\Performance $performanceFacade
+	 */
 	public function __construct(Facade\Performance $performanceFacade)
 	{
 		$this->performanceFacade = $performanceFacade;
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Event $event
+	 */
 	public function setEvent(Entity\Event $event)
 	{
 		$this->event = $event;
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Performance $performance
+	 */
 	public function setPerformance(Entity\Performance $performance)
 	{
 		$this->performance = $performance;
 	}
 
 
-
+	/**
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function create()
 	{
 		$form = new Form();
@@ -66,7 +79,9 @@ class SetPerformanceForm extends Object
 	}
 
 
-
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 */
 	public function processForm(Form $form)
 	{
 		$values = $form->values;
@@ -74,7 +89,6 @@ class SetPerformanceForm extends Object
 		$performance->songAuthor = $values->songAuthor;
 		$performance->songName = $values->songName;
 		$performance->note = $values->note;
-		$performance->setPosition(999);
 		$this->performanceFacade->save($performance);
 	}
 

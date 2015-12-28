@@ -8,6 +8,9 @@ use Symfony\Component\Console\Helper\DialogHelper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class CreateUser
+ */
 class CreateUser extends Command
 {
 
@@ -15,7 +18,11 @@ class CreateUser extends Command
 	private $userFacade;
 
 
-
+	/**
+	 * CreateUser constructor.
+	 *
+	 * @param \App\Model\Security\UserFacade $userFacade
+	 */
 	public function __construct(UserFacade $userFacade)
 	{
 		parent::__construct();
@@ -31,7 +38,10 @@ class CreateUser extends Command
 	}
 
 
-
+	/**
+	 * @param \Symfony\Component\Console\Input\InputInterface $input
+	 * @param \Symfony\Component\Console\Output\OutputInterface $output
+	 */
 	protected function interact(InputInterface $input, OutputInterface $output)
 	{
 		/** @var DialogHelper $dialog */

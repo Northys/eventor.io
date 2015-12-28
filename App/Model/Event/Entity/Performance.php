@@ -52,7 +52,11 @@ class Performance extends BaseEntity implements ISortable
 	protected $note;
 
 
-
+	/**
+	 * Performance constructor.
+	 *
+	 * @param \App\Model\Event\Entity\Event $event
+	 */
 	public function __construct(Event $event)
 	{
 		$this->event = $event;

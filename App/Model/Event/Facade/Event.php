@@ -7,6 +7,9 @@ use App\Model\Event\Entity;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Object;
 
+/**
+ * Class Event
+ */
 class Event extends Object
 {
 
@@ -17,7 +20,11 @@ class Event extends Object
 	private $eventRepository;
 
 
-
+	/**
+	 * Event constructor.
+	 *
+	 * @param \Kdyby\Doctrine\EntityManager $em
+	 */
 	public function __construct(EntityManager $em)
 	{
 		$this->em = $em;

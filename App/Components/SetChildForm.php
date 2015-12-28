@@ -9,6 +9,9 @@ use Nette\Application\UI\Form;
 use Nette\Object;
 use Nextras\Forms\Rendering\Bs3FormRenderer;
 
+/**
+ * Class SetChildForm
+ */
 class SetChildForm extends Object
 {
 
@@ -25,7 +28,12 @@ class SetChildForm extends Object
 	private $child;
 
 
-
+	/**
+	 * SetChildForm constructor.
+	 *
+	 * @param \App\Model\Security\UserFacade $userFacade
+	 * @param \App\Model\Event\Facade\Child $childFacade
+	 */
 	public function __construct(UserFacade $userFacade, Facade\Child $childFacade)
 	{
 		$this->userFacade = $userFacade;
@@ -33,21 +41,27 @@ class SetChildForm extends Object
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Performance $performance
+	 */
 	public function setPerformance(Entity\Performance $performance)
 	{
 		$this->performance = $performance;
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Child $child
+	 */
 	public function setChild(Entity\Child $child)
 	{
 		$this->child = $child;
 	}
 
 
-
+	/**
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function create()
 	{
 		$teacherList = [];
@@ -134,7 +148,9 @@ class SetChildForm extends Object
 	}
 
 
-
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 */
 	public function processForm(Form $form)
 	{
 		$values = $form->values;

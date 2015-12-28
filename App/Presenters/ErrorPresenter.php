@@ -14,8 +14,9 @@ class ErrorPresenter extends BasePresenter
 {
 
 	/**
-	 * @param  Exception
-	 * @return void
+	 * @param $exception
+	 *
+	 * @throws \Nette\Application\AbortException
 	 */
 	public function renderDefault($exception)
 	{

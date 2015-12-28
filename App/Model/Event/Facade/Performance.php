@@ -6,6 +6,9 @@ use App\Model\Event\Entity;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Object;
 
+/**
+ * Class Performance
+ */
 class Performance extends Object
 {
 
@@ -16,7 +19,11 @@ class Performance extends Object
 	private $performanceRepository;
 
 
-
+	/**
+	 * Performance constructor.
+	 *
+	 * @param \Kdyby\Doctrine\EntityManager $em
+	 */
 	public function __construct(EntityManager $em)
 	{
 		$this->em = $em;

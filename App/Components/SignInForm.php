@@ -15,14 +15,20 @@ class SignInForm extends Object
 	private $user;
 
 
-
+	/**
+	 * SignInForm constructor.
+	 *
+	 * @param \Nette\Security\User $user
+	 */
 	public function __construct(User $user)
 	{
 		$this->user = $user;
 	}
 
 
-
+	/**
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function create()
 	{
 		$form = new Form();
@@ -43,7 +49,9 @@ class SignInForm extends Object
 	}
 
 
-
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 */
 	public function processForm(Form $form)
 	{
 		try {

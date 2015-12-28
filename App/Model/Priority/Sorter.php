@@ -8,6 +8,9 @@ use Nette\InvalidArgumentException;
 use Nette\Object;
 use Nette\Reflection\ClassType;
 
+/**
+ * Class Sorter
+ */
 class Sorter extends Object
 {
 
@@ -15,7 +18,11 @@ class Sorter extends Object
 	private $entityManager;
 
 
-
+	/**
+	 * Sorter constructor.
+	 *
+	 * @param \Kdyby\Doctrine\EntityManager $entityManager
+	 */
 	public function __construct(EntityManager $entityManager)
 	{
 		$this->entityManager = $entityManager;

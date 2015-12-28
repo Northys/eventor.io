@@ -6,6 +6,9 @@ use Doctrine\ORM\Event\PreFlushEventArgs;
 use Kdyby\Events\Subscriber;
 use Nette;
 
+/**
+ * Class FillPriorityFieldSubscriber
+ */
 class FillPriorityFieldSubscriber extends Nette\Object implements Subscriber
 {
 

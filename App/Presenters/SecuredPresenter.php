@@ -2,6 +2,9 @@
 
 namespace App\Presenters;
 
+/**
+ * Class SecuredPresenter
+ */
 class SecuredPresenter extends BasePresenter
 {
 

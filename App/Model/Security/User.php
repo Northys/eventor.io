@@ -42,7 +42,9 @@ class User extends BaseEntity implements IIdentity
 	protected $events;
 
 
-
+	/**
+	 * User constructor.
+	 */
 	public function __construct()
 	{
 		$this->events = new ArrayCollection();

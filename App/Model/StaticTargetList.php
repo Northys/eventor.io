@@ -7,6 +7,9 @@ use Brabijan\SeoComponents\Router\Target;
 use Brabijan\SeoComponents\TargetSection;
 use Nette\Object;
 
+/**
+ * Class StaticTargetList
+ */
 class StaticTargetList extends Object implements ITargetSectionProvider
 {
 

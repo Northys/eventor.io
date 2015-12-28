@@ -2,19 +2,24 @@
 
 namespace App\Presenters;
 
-use App;
 use App\Components\SetUserForm;
+use App\Model\Security\User;
+use App\Model\Security\UserFacade;
 
+/**
+ * Class UsersPresenter
+ */
 class UsersPresenter extends SecuredPresenter
 {
 
-	/** @var App\Model\Security\UserFacade @autowire */
+	/** @var UserFacade @autowire */
 	public $userFacade;
 
-	/** @var App\Model\Security\User */
+	/** @var User */
 	private $selectedUser;
 
-
+	/** @var User[] */
+	private $users;
 
 	public function startup()
 	{
@@ -25,29 +30,22 @@ class UsersPresenter extends SecuredPresenter
 		$this->submenu->addItem("Users:addUser", 'Přidat uživatele');
 	}
 
-
-
-	/*
-	 *
-	 * default
-	 *
-	 */
-
+	public function actionDefault()
+	{
+		$this->users = $this->userFacade->getUsersList();
+	}
 
 	public function renderDefault()
 	{
-		$this->template->users = $this->userFacade->getUsersList();
+		$this->template->users = $this->users;
 	}
 
 
-
-	/*
+	/**
+	 * @param \App\Components\SetUserForm $factory
 	 *
-	 * addUser
-	 *
+	 * @return \Nette\Application\UI\Form
 	 */
-
-
 	public function createComponentAddUserForm(SetUserForm $factory)
 	{
 		$form = $factory->create();
@@ -60,14 +58,9 @@ class UsersPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * editUser
-	 *
+	/**
+	 * @param int $id
 	 */
-
-
 	public function actionEditUser($id)
 	{
 		$this->selectedUser = $this->userFacade->findUserById($id);
@@ -77,7 +70,11 @@ class UsersPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetUserForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentEditUserForm(SetUserForm $factory)
 	{
 		$factory->setUser($this->selectedUser);
@@ -91,14 +88,9 @@ class UsersPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * handlers
-	 *
+	/**
+	 * @param int $id
 	 */
-
-
 	public function handleDeleteUser($id)
 	{
 		$user = $this->userFacade->findUserById($id);

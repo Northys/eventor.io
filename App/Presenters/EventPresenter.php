@@ -14,6 +14,9 @@ use Nette\Application\Responses\FileResponse;
 use Nette\Iterators\CachingIterator;
 use Nette\Utils\Random;
 
+/**
+ * Class EventPresenter
+ */
 class EventPresenter extends SecuredPresenter
 {
 
@@ -52,21 +55,17 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * default
-	 *
-	 */
-
-
 	public function renderDefault()
 	{
 		$this->template->eventList = $this->eventFacade->getEventList();
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetEventForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentAddEventForm(SetEventForm $factory)
 	{
 		$form = $factory->create();
@@ -79,14 +78,9 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * detail
-	 *
+	/**
+	 * @param $id
 	 */
-
-
 	public function actionDetail($id)
 	{
 		if (!$id or !($this->selectedEvent = $this->eventFacade->findEventById($id))) {
@@ -95,7 +89,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetPerformanceForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentAddPerformanceForm(SetPerformanceForm $factory)
 	{
 		$factory->setEvent($this->selectedEvent);
@@ -109,7 +107,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetEventForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentEditEventForm(SetEventForm $factory)
 	{
 		$factory->setEvent($this->selectedEvent);
@@ -130,14 +132,10 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * performanceDetail
-	 *
+	/**
+	 * @param $id
+	 * @param $performanceId
 	 */
-
-
 	public function actionPerformanceDetail($id, $performanceId)
 	{
 		if (!$id or !$performanceId or !($this->selectedEvent = $this->eventFacade->findEventById($id)) or !($this->selectedPerformance = $this->performanceFacade->findPerformanceById($performanceId))) {
@@ -146,7 +144,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetPerformanceForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentEditPerformanceForm(SetPerformanceForm $factory)
 	{
 		$factory->setEvent($this->selectedEvent);
@@ -161,7 +163,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetChildForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentAddChildForm(SetChildForm $factory)
 	{
 		$factory->setPerformance($this->selectedPerformance);
@@ -183,14 +189,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * editChild
-	 *
+	/**
+	 * @param $id
+	 * @param $performanceId
+	 * @param $childId
 	 */
-
-
 	public function actionEditChild($id, $performanceId, $childId)
 	{
 		if (!$id or !$childId or !$performanceId or
@@ -203,7 +206,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param \App\Components\SetChildForm $factory
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function createComponentEditChildForm(SetChildForm $factory)
 	{
 		$factory->setPerformance($this->selectedPerformance);
@@ -218,14 +225,9 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
-	/*
-	 *
-	 * handlers
-	 *
+	/**
+	 * @param $id
 	 */
-
-
 	public function handleDownloadReport($id)
 	{
 		if ($id and $event = $this->eventFacade->findEventById($id)) {
@@ -237,7 +239,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param $id
+	 *
+	 * @throws \PHPExcel_Reader_Exception
+	 */
 	public function handleDownloadExcel($id)
 	{
 		if ($id and $event = $this->eventFacade->findEventById($id)) {
@@ -288,7 +294,9 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param $id
+	 */
 	public function handleDeleteEvent($id)
 	{
 		if ($id and $event = $this->eventFacade->findEventById($id)) {
@@ -299,7 +307,10 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param $id
+	 * @param $performanceId
+	 */
 	public function handleDeletePerformance($id, $performanceId)
 	{
 		if ($id and $performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {
@@ -310,7 +321,11 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param $id
+	 * @param $performanceId
+	 * @param $childId
+	 */
 	public function handleDeleteChild($id, $performanceId, $childId)
 	{
 		if ($id and $childId and $performanceId and $child = $this->childFacade->findChildById($childId)) {
@@ -321,7 +336,13 @@ class EventPresenter extends SecuredPresenter
 	}
 
 
-
+	/**
+	 * @param $id
+	 * @param $performanceId
+	 * @param $position
+	 *
+	 * @throws \Exception
+	 */
 	public function handleMovePerformance($id, $performanceId, $position)
 	{
 		if ($performanceId and $performance = $this->performanceFacade->findPerformanceById($performanceId)) {

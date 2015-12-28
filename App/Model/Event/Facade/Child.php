@@ -6,6 +6,9 @@ use App\Model\Event\Entity;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Object;
 
+/**
+ * Class Child
+ */
 class Child extends Object
 {
 
@@ -16,7 +19,11 @@ class Child extends Object
 	private $childRepository;
 
 
-
+	/**
+	 * Child constructor.
+	 *
+	 * @param \Kdyby\Doctrine\EntityManager $em
+	 */
 	public function __construct(EntityManager $em)
 	{
 		$this->em = $em;
@@ -24,21 +31,33 @@ class Child extends Object
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Event $event
+	 *
+	 * @return array
+	 */
 	public function findChildByEvent(Entity\Event $event)
 	{
 		return $this->childRepository->findBy(["event" => $event]);
 	}
 
 
-
+	/**
+	 * @param $id
+	 *
+	 * @return null|object
+	 */
 	public function findChildById($id)
 	{
 		return $this->childRepository->find($id);
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Child $child
+	 *
+	 * @throws \Exception
+	 */
 	public function save(Entity\Child $child)
 	{
 		$this->em->persist($child);
@@ -46,7 +65,11 @@ class Child extends Object
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Child $child
+	 *
+	 * @throws \Exception
+	 */
 	public function delete(Entity\Child $child)
 	{
 		$this->em->remove($child);

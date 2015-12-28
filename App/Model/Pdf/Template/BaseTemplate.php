@@ -19,7 +19,9 @@ class BaseTemplate extends Object
 	private $template;
 
 
-
+	/**
+	 * @param \Nette\Application\UI\ITemplateFactory $templateFactory
+	 */
 	public function injectPrimary(ITemplateFactory $templateFactory)
 	{
 		$this->templateFactory = $templateFactory;

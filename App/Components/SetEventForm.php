@@ -10,6 +10,9 @@ use Nette\Object;
 use Nette\Security\User;
 use Nette\Utils\DateTime;
 
+/**
+ * Class SetEventForm
+ */
 class SetEventForm extends Object
 {
 
@@ -23,7 +26,12 @@ class SetEventForm extends Object
 	private $event;
 
 
-
+	/**
+	 * SetEventForm constructor.
+	 *
+	 * @param \App\Model\Event\Facade\Event $eventFacade
+	 * @param \Nette\Security\User $securityUser
+	 */
 	public function __construct(Facade\Event $eventFacade, User $securityUser)
 	{
 		$this->eventFacade = $eventFacade;
@@ -31,14 +39,18 @@ class SetEventForm extends Object
 	}
 
 
-
+	/**
+	 * @param \App\Model\Event\Entity\Event $event
+	 */
 	public function setEvent(Entity\Event $event)
 	{
 		$this->event = $event;
 	}
 
 
-
+	/**
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function create()
 	{
 		$form = new Form();
@@ -67,7 +79,9 @@ class SetEventForm extends Object
 	}
 
 
-
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 */
 	public function processForm(Form $form)
 	{
 		$values = $form->values;

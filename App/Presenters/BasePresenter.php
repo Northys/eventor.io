@@ -7,6 +7,9 @@ use Kdyby\Autowired\AutowireComponentFactories;
 use Kdyby\Autowired\AutowireProperties;
 use Nette\Application\UI\Presenter;
 
+/**
+ * Class BasePresenter
+ */
 class BasePresenter extends Presenter
 {
 

@@ -8,6 +8,9 @@ use Nette\Application\UI\Form;
 use Nette\Object;
 use Nextras\Forms\Rendering\Bs3FormRenderer;
 
+/**
+ * Class SetUserForm
+ */
 class SetUserForm extends Object
 {
 
@@ -18,21 +21,29 @@ class SetUserForm extends Object
 	private $user;
 
 
-
+	/**
+	 * SetUserForm constructor.
+	 *
+	 * @param \App\Model\Security\UserFacade $userFacade
+	 */
 	public function __construct(UserFacade $userFacade)
 	{
 		$this->userFacade = $userFacade;
 	}
 
 
-
+	/**
+	 * @param \App\Model\Security\User $user
+	 */
 	public function setUser(User $user)
 	{
 		$this->user = $user;
 	}
 
 
-
+	/**
+	 * @return \Nette\Application\UI\Form
+	 */
 	public function create()
 	{
 		$form = new Form();
@@ -74,7 +85,9 @@ class SetUserForm extends Object
 	}
 
 
-
+	/**
+	 * @param \Nette\Application\UI\Form $form
+	 */
 	public function processForm(Form $form)
 	{
 		$values = $form->values;

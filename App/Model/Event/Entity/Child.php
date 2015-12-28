@@ -48,7 +48,12 @@ class Child extends BaseEntity
 	protected $class;
 
 
-
+	/**
+	 * Child constructor.
+	 *
+	 * @param \App\Model\Event\Entity\Performance $performance
+	 * @param \App\Model\Security\User|null $teacher
+	 */
 	public function __construct(Performance $performance, User $teacher = null)
 	{
 		$this->performance = $performance;

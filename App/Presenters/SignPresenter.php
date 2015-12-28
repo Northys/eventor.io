@@ -4,9 +4,17 @@ namespace App\Presenters;
 
 use App\Components\SignInForm;
 
+/**
+ * Class SignPresenter
+ */
 class SignPresenter extends BasePresenter
 {
 
+	/**
+	 * @param \App\Components\SignInForm $signInForm
+	 *
+	 * @return \Nette\Application\UI\Form
+	 */
 	protected function createComponentSignInForm(SignInForm $signInForm)
 	{
 		$form = $signInForm->create();
