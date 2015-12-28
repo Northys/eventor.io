@@ -26,16 +26,24 @@ class Event extends BaseEntity
 	 */
 	protected $id;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $name;
 
-	/** @ORM\Column(type="datetime") */
+	/**
+	 * @ORM\Column(type="datetime")
+	 */
 	protected $date;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $place;
 
-	/** @ORM\Column(type="text") */
+	/**
+	 * @ORM\Column(type="text")
+	 */
 	protected $note;
 
 	/**

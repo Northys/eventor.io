@@ -36,10 +36,14 @@ class Performance extends BaseEntity implements ISortable
 	 */
 	protected $event;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $songAuthor;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $songName;
 
 	/**
@@ -48,7 +52,9 @@ class Performance extends BaseEntity implements ISortable
 	 */
 	protected $children;
 
-	/** @ORM\Column(type="text") */
+	/**
+	 * @ORM\Column(type="text")
+	 */
 	protected $note;
 
 

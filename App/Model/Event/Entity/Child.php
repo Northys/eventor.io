@@ -38,13 +38,19 @@ class Child extends BaseEntity
 	 */
 	protected $performance;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $name;
 
-	/** @ORM\Column(type="string") */
+	/**
+	 * @ORM\Column(type="string")
+	 */
 	protected $instrument;
 
-	/** @ORM\Column(type="string", nullable=true) */
+	/**
+	 * @ORM\Column(type="string", nullable=true)
+	 */
 	protected $class;
 
 
