@@ -5,7 +5,7 @@ namespace App\Model\Event\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Kdyby\Doctrine\Entities\BaseEntity;
-use Librette\Doctrine\Sortable\ISortable;
+use Librette\Doctrine\Sortable\ISortableScope;
 use Librette\Doctrine\Sortable\TSortable;
 
 /**
@@ -18,7 +18,7 @@ use Librette\Doctrine\Sortable\TSortable;
  * @property $note
  * @property $priority
  */
-class Performance extends BaseEntity implements ISortable
+class Performance extends BaseEntity implements ISortableScope
 {
 
 	use TSortable;
@@ -67,6 +67,11 @@ class Performance extends BaseEntity implements ISortable
 	{
 		$this->event = $event;
 		$this->children = new ArrayCollection();
+	}
+
+	public function getSortableScope()
+	{
+		return $this->event;
 	}
 
 }
