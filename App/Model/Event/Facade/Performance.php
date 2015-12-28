@@ -3,6 +3,8 @@
 namespace App\Model\Event\Facade;
 
 use App\Model\Event\Entity;
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\NoResultException;
 use Kdyby\Doctrine\EntityManager;
 use Nette\Object;
 
@@ -31,9 +33,9 @@ class Performance extends Object
 	}
 
 
-
 	/**
 	 * @param $id
+	 *
 	 * @return null|Entity\Performance
 	 */
 	public function findPerformanceById($id)
@@ -41,6 +43,29 @@ class Performance extends Object
 		return $this->performanceRepository->find($id);
 	}
 
+
+	/**
+	 * @param \App\Model\Event\Entity\Event $event
+	 *
+	 * @return array
+	 */
+	public function getNextPositionByEvent(Entity\Event $event)
+	{
+		$query = $this->em->createQueryBuilder()
+			->select('MAX(p.position)')
+			->from(Entity\Performance::class, 'p')
+			->whereCriteria(['p.event' => $event])
+			->getQuery();
+
+		try {
+			$result = $query->getResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+			$nextPosition = $result + 1;
+		} catch (NoResultException $e) {
+			$nextPosition = 1;
+		}
+
+		return $nextPosition;
+	}
 
 
 	/**
@@ -51,7 +76,6 @@ class Performance extends Object
 		$this->em->persist($performance);
 		$this->em->flush();
 	}
-
 
 
 	/**

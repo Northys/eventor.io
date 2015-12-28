@@ -84,11 +84,13 @@ class SetPerformanceForm extends Object
 	 */
 	public function processForm(Form $form)
 	{
+		$nextPosition = $this->performanceFacade->getNextPositionByEvent($this->event);
 		$values = $form->values;
 		$performance = $this->performance ? $this->performance : new Entity\Performance($this->event);
 		$performance->songAuthor = $values->songAuthor;
 		$performance->songName = $values->songName;
 		$performance->note = $values->note;
+		$performance->setPosition($nextPosition);
 		$this->performanceFacade->save($performance);
 	}
 
