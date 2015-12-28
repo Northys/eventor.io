@@ -36,8 +36,10 @@ extensions:
 	events: Kdyby\Events\DI\EventsExtension
 	annotations: Kdyby\Annotations\DI\AnnotationsExtension
 	doctrine: Kdyby\Doctrine\DI\OrmExtension
-	doctrine2identity: Majkl578\NetteAddons\Doctrine2Identity\DI\IdentityExtension
+	identity: Majkl578\NetteAddons\Doctrine2Identity\DI\IdentityExtension
 	librette.doctrine.sortable: Librette\Doctrine\Sortable\DI\SortableExtension
+	migrations: Zenify\DoctrineMigrations\DI\MigrationsExtension
+	eventdispatcher: Symnedi\EventDispatcher\DI\EventDispatcherExtension
 
 services:
 	- App\Router\RouterFactory
