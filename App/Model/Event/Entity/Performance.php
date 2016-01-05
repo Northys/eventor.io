@@ -71,7 +71,7 @@ class Performance extends BaseEntity implements ISortableScope
 
 	public function getSortableScope()
 	{
-		return $this->event;
+		return ['event'];
 	}
 
 }
