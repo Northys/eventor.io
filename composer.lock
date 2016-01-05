@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7cbcec5d4f31522b5116d65d828c79b6",
-    "content-hash": "579cc6f72caf888e63a35a2a65ddaa2d",
+    "hash": "832154ca228984a1daa2b3b5c466fa40",
+    "content-hash": "1a87fec55fb766ce082e121b1b655381",
     "packages": [
         {
             "name": "brabijan/bootstrap-ui-components",
@@ -1449,16 +1449,16 @@
         },
         {
             "name": "librette/doctrine-sortable",
-            "version": "v0.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/librette/doctrine-sortable.git",
-                "reference": "90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e"
+                "reference": "1cb5b2deca2a010b95592939802f074ee58c833a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/librette/doctrine-sortable/zipball/90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e",
-                "reference": "90d9dbe0ba3fad7dc6ffd4b13f05c2d5e17f985e",
+                "url": "https://api.github.com/repos/librette/doctrine-sortable/zipball/1cb5b2deca2a010b95592939802f074ee58c833a",
+                "reference": "1cb5b2deca2a010b95592939802f074ee58c833a",
                 "shasum": ""
             },
             "require": {
@@ -1498,7 +1498,7 @@
                 "nette",
                 "sortable"
             ],
-            "time": "2015-02-27 15:41:35"
+            "time": "2015-10-06 09:28:14"
         },
         {
             "name": "majkl578/nette-identity-doctrine",
@@ -3262,7 +3262,8 @@
         "kdyby/doctrine": 20,
         "kdyby/bootstrap-form-renderer": 20,
         "brabijan/images": 20,
-        "majkl578/nette-identity-doctrine": 20
+        "majkl578/nette-identity-doctrine": 20,
+        "librette/doctrine-sortable": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
