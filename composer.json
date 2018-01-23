@@ -1,31 +1,36 @@
 {
-	"name": "qopcomputers/sandbox",
-	"type": "project",
-	"license": ["Unlicense"],
-	"authors": [
-		{
-			"name": "Jan Brabec"
-		}
-	],
-	"require": {
-		"php": ">= 5.3.7",
-		"nette/nette": "~2.3.0",
-		"dg/adminer-custom": "~1.0",
-		"brabijan/nette-seo-components": "dev-master",
-		"brabijan/bootstrap-ui-components": "dev-master",
-		"kdyby/doctrine": "@dev",
-		"kdyby/autowired": "~1.0",
-		"kdyby/bootstrap-form-renderer": "@dev",
-		"brabijan/images": "@dev",
-		"majkl578/nette-identity-doctrine": "dev-master",
-        "mpdf/mpdf": "~6.0.0",
-		"nextras/forms": "^1.4",
-    	"phpoffice/phpexcel": "1.8.0",
-		"zenify/doctrine-migrations": "^2.3",
-		"librette/doctrine-sortable": "dev-master"
-	},
-	"require-dev": {
-		"nette/tester": "~1.0"
-	},
-	"minimum-stability": "stable"
+  "name": "qopcomputers/sandbox",
+  "type": "project",
+  "license": [
+    "Unlicense"
+  ],
+  "authors": [
+    {
+      "name": "Jan Brabec"
+    },
+    {
+      "name": "Jiri Travnicek"
+    }
+  ],
+  "require": {
+    "php": ">= 5.3.7",
+    "nette/nette": "~2.3.0",
+    "dg/adminer-custom": "~1.0",
+    "brabijan/nette-seo-components": "dev-master",
+    "brabijan/bootstrap-ui-components": "dev-master",
+    "kdyby/doctrine": "@dev",
+    "kdyby/autowired": "~1.0",
+    "kdyby/bootstrap-form-renderer": "@dev",
+    "brabijan/images": "@dev",
+    "majkl578/nette-identity-doctrine": "dev-master",
+    "mpdf/mpdf": "~6.0.0",
+    "nextras/forms": "^1.4",
+    "phpoffice/phpexcel": "1.8.0",
+    "zenify/doctrine-migrations": "^2.3",
+    "librette/doctrine-sortable": "dev-master"
+  },
+  "require-dev": {
+    "nette/tester": "~1.0"
+  },
+  "minimum-stability": "stable"
 }
